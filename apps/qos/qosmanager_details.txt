@@ -1,0 +1,3 @@
+./qosmanager2.py -A -t policy -O '{"name": "Enqueue 2:2 s1", "protocol":"6","eth-type": "0x0800", "ingress-port": "1","ip-src":"10.0.0.1", "sw":"00:00:00:00:00:00:00:01","queue":"2","enqueue-port":"2"}' -c 127.0.0.1
+
+./qosmanager2.py -A -t policy -O '{"name": "Enqueue 2:2 s2", "protocol":"6","eth-type": "0x0800", "ingress-port": "1","ip-src":"10.0.0.2", "sw":"00:00:00:00:00:00:00:01","queue":"2","enqueue-port":"2"}' -c 127.0.0.1

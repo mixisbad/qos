@@ -1,0 +1,21 @@
+#!/bin/bash
+if test $# -ge 3
+then
+	if [ -z $4 ]
+	then
+	port1=0
+	else
+	port1=$4
+	fi
+	if [ -z $5 ]
+	then
+	port2=0
+	else
+	port2=$5
+	fi
+	~/floodlight-qos-beta-master/apps/qos/qospath2.py -a -N "q$1-h$2$3-p$port1$port2" -S $2 -D $3 -J "{\"eth-type\":\"0x0800\",\"src-port\":\"$port1\",\"dst-port\":\"$port2\",\"protocol\":\"6\",\"queue\":\"$1\"}"
+	~/floodlight-qos-beta-master/apps/qos/qospath2.py -a -N "q$1-h$3$2-p$port2$port1" -S $3 -D $2 -J "{\"eth-type\":\"0x0800\",\"src-port\":\"$port2\",\"dst-port\":\"$port1\",\"protocol\":\"6\",\"queue\":\"$1\"}"
+
+else
+	echo 'error : queue and hosts are not supplied'
+fi	

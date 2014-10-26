@@ -1,0 +1,1 @@
+./qospath2.py -a -N 2Mbps1-2 -S 10.0.0.1 -D 10.0.0.2 -J '{"eth-type":"0x0800", "protocol":"6", "queue":"2"}'
