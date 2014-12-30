@@ -32,11 +32,18 @@ p = os.popen(cmd).read()
 #print p
 
 brdgs = find_all(p, "Bridge")
-print brdgs
+#print brdgs
 
 switches = []
 for bn in brdgs:
-    sw =  p[(bn+8):(bn+10)]
+    first_quote = bn+6
+    while p[first_quote] != '"':
+        first_quote = first_quote+1
+    first_quote = first_quote+1
+    second_quote = first_quote+1
+    while p[second_quote] != '"':
+        second_quote = second_quote+1
+    sw =  p[first_quote:second_quote]
     switches.append(sw)
 
 ports = find_all(p,"Port")
@@ -44,9 +51,15 @@ print ports
 
 prts = []
 for prt in ports:
-    prt = p[(prt+6):(prt+13)]
-    if '"' not in prt:
-        print prt
+    first_quote = prt+5
+    while p[first_quote] != '"':
+        first_quote = first_quote+1
+    first_quote = first_quote+1
+    second_quote = first_quote+1
+    while p[second_quote] != '"':
+        second_quote = second_quote+1
+    prt =  p[first_quote:second_quote]
+    if '-' in prt:
         prts.append(prt)
 config_strings = {}
 for i in range(len(switches)):
@@ -54,7 +67,7 @@ for i in range(len(switches)):
     sw = switches[i]
     for n in range(len(prts)):
         #verify correct order
-        if switches[i] in prts[n]:
+        if switches[i] == prts[n][0:prts[n].find("-")]:
             port_name = prts[n]
             str = str+" -- set port %s qos=@defaultqos" % port_name
     config_strings[sw] = str
@@ -66,12 +79,9 @@ for sw in switches:
     queuecmd = queuecmd + "create qos type=linux-htb other-config:max-rate=3000000 queues=0=@q0,1=@q1,2=@q2 -- "
     queuecmd = queuecmd + "--id=@q0 create queue other-config:max-rate=3000000 -- "
     queuecmd = queuecmd + "--id=@q1 create queue other-config:max-rate=2000000 -- "
-    queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=2000000 other-config:min-rate=2000000" 
-    print queuecmd
-    print ""
-    print ""
-    #q_res = os.popen(queuecmd).read()
-    #print q_res
+    queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=2000000 other-config:min-rate=2000000"
+    q_res = os.popen(queuecmd).read()
+    print q_res
 
 
 
