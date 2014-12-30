@@ -32,7 +32,7 @@ p = os.popen(cmd).read()
 #print p
 
 brdgs = find_all(p, "Bridge")
-print brdgs
+#print brdgs
 
 switches = []
 for bn in brdgs:
@@ -59,9 +59,8 @@ for prt in ports:
     while p[second_quote] != '"':
         second_quote = second_quote+1
     prt =  p[first_quote:second_quote]
-    #prt = p[(prt+6):(prt+13)]
     if '-' in prt:
-        print prt
+        #print prt
         prts.append(prt)
 config_strings = {}
 for i in range(len(switches)):
@@ -69,7 +68,9 @@ for i in range(len(switches)):
     sw = switches[i]
     for n in range(len(prts)):
         #verify correct order
-        if switches[i] in prts[n]:
+        if switches[i] == prts[n][0:prts[n].find("-")]:
+            #print "switch : " + switches[i]
+            #print "port : " + prts[n]
             port_name = prts[n]
             str = str+" -- set port %s qos=@defaultqos" % port_name
     config_strings[sw] = str
@@ -82,11 +83,11 @@ for sw in switches:
     queuecmd = queuecmd + "--id=@q0 create queue other-config:max-rate=3000000 -- "
     queuecmd = queuecmd + "--id=@q1 create queue other-config:max-rate=2000000 -- "
     queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=2000000 other-config:min-rate=2000000" 
-    print queuecmd
-    print ""
-    print ""
-    #q_res = os.popen(queuecmd).read()
-    #print q_res
+    #print queuecmd
+    #print ""
+    #print ""
+    q_res = os.popen(queuecmd).read()
+    print q_res
 
 
 
