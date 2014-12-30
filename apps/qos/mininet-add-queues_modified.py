@@ -80,6 +80,9 @@ for sw in switches:
     queuecmd = queuecmd + "--id=@q0 create queue other-config:max-rate=3000000 -- "
     queuecmd = queuecmd + "--id=@q1 create queue other-config:max-rate=2000000 -- "
     queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=2000000 other-config:min-rate=2000000"
+    print queuecmd
+    print ""
+    print ""
     q_res = os.popen(queuecmd).read()
     print q_res
 
