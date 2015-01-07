@@ -1,0 +1,23 @@
+node
+s1
+s2
+s3
+s4
+s5
+server1 10.0.0.1
+server2 10.0.0.2
+server3 10.0.0.3
+server4 10.0.0.4
+server5 10.0.0.5
+server6 10.0.0.6
+server7 10.0.0.7
+server8 10.0.0.8
+
+
+adjacent
+server1 server2 s5
+server3 server4 s5
+server5 server6 s5
+server7 server8 s5
+s1 s2 s3 s4
+
