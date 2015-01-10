@@ -8,6 +8,7 @@ nodes = []
 server_nodes = []
 switch_nodes = []
 server = {}
+switches = {}
 adjacent = []
 max_bandwidth = 3000000
 
@@ -98,6 +99,9 @@ def allocate_queue():
                  
 
 if __name__ == '__main__':
+    global nodes
+    global server_nodes
+    global switch_nodes
     topo_detail = open('topology_detail.txt','r')
     
     line = ""
@@ -113,17 +117,19 @@ if __name__ == '__main__':
     while len(item) > 0:
 
         #found server
-        if len(item) == 2:
+        if "." in item[1]:
             server_nodes.append(item[0])
             server[item[1]] = item[0]
 
         #found switch
-        elif len(item) ==1:
+        elif ":" in item[1]:
             switch_nodes.append(item[0])
+            switches[item[1]] = item[0]
 
         line = topo_detail.readline()
         item = line.split()
 
+    switch_nodes.sort()
     nodes = switch_nodes + server_nodes
         
 
@@ -138,17 +144,18 @@ if __name__ == '__main__':
         line = topo_detail.readline()
         item = line.split()
 
+    adjacent = [[] for i in range len(switch_nodes)]
 
     line = topo_detail.readline()
     item = line.split()
     while len(item) > 0:
         row = []
-        for i in range(len(item)):
+        for i in range(1,len(item)):
             if item[i] in nodes:
                 row.append( nodes.index(item[i]) )
             else:
                 row.append( -1 )
-        adjacent.append( row )
+        adjacent[nodes.index(item[0])] = row
         line = topo_detail.readline()
         item = line.split()
 
