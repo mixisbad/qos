@@ -2,7 +2,10 @@
 #  coding: utf-8
 
 import sys
+import io
+import json
 import Queue
+import urllib
 
 nodes = []
 server_nodes = []
@@ -11,9 +14,9 @@ server = {}
 switches = {}
 switches_dpid = {}
 adjacent = []
-max_bandwidth = 3000000
+max_bandwidth = 10
 
-linkbandwidth = 10.0
+#linkbandwidth = 10.0
 traffic_file_name = "/home/mininet/floodlight-qos-beta-master/traffic.txt"
 switchnum = 0
 traffic_data = {}
@@ -22,17 +25,17 @@ bandwidthout = [[]]
 f_ptr = 0
 
 #dummy data for test
-poll_map = [
-[3000000, 3000000, 3000000, 3000000, 3000000], 
-[3000000, 3000000, 3000000, 3000000, 3000000], 
-[3000000, 3000000, 3000000, 3000000, 3000000], 
-[3000000, 3000000, 3000000, 3000000, 3000000], 
-[3000000, 3000000, 3000000, 3000000]]
+#poll_map = [
+#[3000000, 3000000, 3000000, 3000000, 3000000], 
+#[3000000, 3000000, 3000000, 3000000, 3000000], 
+#[3000000, 3000000, 3000000, 3000000, 3000000], 
+#[3000000, 3000000, 3000000, 3000000, 3000000], 
+#[3000000, 3000000, 3000000, 3000000]]
 
 def build_port_name():
     global name_index
 
-    page = urllib.request.urlopen('http://localhost:8080/wm/core/controller/switches/json')
+    page = urllib.urlopen('http://localhost:8080/wm/core/controller/switches/json')
     line = page.read().decode("utf-8")
 
     collections = json.loads(line)
@@ -48,7 +51,7 @@ def build_port_name():
         name_index[dpid] = port_detail
         
 
-def parsejson():
+def measure_bandwidth():
     global traffic_data
     global traffic_file_name
     global name_index
@@ -56,11 +59,11 @@ def parsejson():
     global bandwidthout
     global switchnum
 
-    page = urllib.request.urlopen('http://localhost:8080/wm/core/switch/all/flow/json')
+    page = urllib.urlopen('http://localhost:8080/wm/core/switch/all/flow/json')
     
     line = page.read().decode("utf-8")
 
-    f_ptr = open(traffic_file_name,'w',encoding='utf-8')
+    f_ptr = io.open(traffic_file_name,'w',encoding='utf-8')
     new_traffic_data = {}
     switch_dicts = json.loads(line)
     for switch_id in switch_dicts:
@@ -71,7 +74,7 @@ def parsejson():
                 actions = flow["actions"]
 
                 for action in actions:
-                    if action["type"] == "OUTPUT":
+                    if action["type"] == "OUTPUT" or action["type"] == "OPAQUE_ENQUEUE":
                         total_duration = 0
                         total_byte = 0
                         found = False
@@ -99,34 +102,47 @@ def parsejson():
                         new_traffic_data[buildkey][str(match)]["byteCount"] = flow["byteCount"]
                         
                         bw = ((total_byte*8)/(total_duration))/1000000
-                        bandwidthout[switch_index][action["port"]-1][0] = bandwidthout[switch_index][action["port"]-1] - bw
+                        bandwidthout[switch_index][action["port"]-1][0] = bandwidthout[switch_index][action["port"]-1][0] - bw
 
                         destination = match["networkDestination"]
+                        print "destination : " + destination 
                         if destination in server:
                             server_name = server[destination]
                             server_index = server_nodes.index(server_name)+1
                             bandwidthout[switch_index][action["port"]-1][server_index] = bandwidthout[switch_index][action["port"]-1][server_index] + bw
-                           
-    f_ptr.write(str(switchnum) + "\t" + str(switchnumport) + "\n")
+
+    #previously write number of switches and assume they all have less/equal than maxport
+    #f_ptr.write(str(switchnum) + "\t" + str(switchnumport) + "\n")
+
+    #need to change into a list of how many switches and how many port each switch has
+
 #if switch_id in name_index:
 #switch_index = nodes.index(switches[switch_id])
     for key in name_index:
-        f_ptr.write(key + "\n" + nodes.index(key)+"\n")
+        f_ptr.write(key + "\n" + str(nodes.index( switches[key] )) +"\n")
 
-    for sw in range( len(bandwidthout) ):
-        for port in range ( len(sw) ):
-            f_ptr.write(str(bandwidthout[sw][port]) + " ")
-        f_ptr.write("\n")
-    print("-----------------------------------------------------")
+    #print bandwidthout
+
+    #for sw in bandwidthout:
+    #    for port in sw :
+    #        f_ptr.write(str(port[0]) + " ")
+    #    f_ptr.write("\n")
+    #print("-----------------------------------------------------")
     f_ptr.closed
     traffic_data = new_traffic_data
                         
 
-
-def get_bandwidth_on_link(switch,outport):
+#get available bandwidth
+def get_avai_bandwidth_on_link(switch,outport):
     sw = bandwidthout[switch]
-    bandwidth = sw[outport]
+    bandwidth = sw[outport][0]
     return bandwidth
+
+#switch ,outport, server are 0 based
+def get_exists_bandwidth_on_link(switch,outport,server):
+    server_index = server+1
+    bw = bandwidthout[switch][outport][server_index]
+    return bw
 
 def allocate_queue():
     #assume all the bandwidth available in every link is 3000000 for now
@@ -134,6 +150,8 @@ def allocate_queue():
     #loop through all switches
     for focus_switch in adjacent:
         #loop through all output port of a switch to set queues
+        focus_dpid = switches_dpid[switch_nodes[index]]
+        print switch_nodes[index] + " : " + focus_dpid
         port_num = 0        
         for outport in focus_switch:
             #if output port is another switch, begin to check available bandwidth for each server from this output port
@@ -151,7 +169,7 @@ def allocate_queue():
 
                 #add a start node
                 #need to get from actual bandwidth map, node -> outport
-                bandwidth = get_bandwidth_on_link(index,port_num)
+                bandwidth = get_avai_bandwidth_on_link(index,port_num)
                 node_avai_bandw[outport] = bandwidth
 
                 #use max_bandwidth - bandwidth to be able to sort with priority queue
@@ -173,7 +191,7 @@ def allocate_queue():
                         #if next node is not a ban node and isn't visited yet
                         elif next_node != ban_node and not node_visited[next_node]:
                             #need to get from actual bandwidth map, node -> outport
-                            bandwidth = get_bandwidth_on_link(node_id,count_port)
+                            bandwidth = get_avai_bandwidth_on_link(node_id,count_port)
                             bandwidth = min(bandwidth, node_avai_bandw[node_id])
                             node_avai_bandw[next_node] = bandwidth
                             node_visited[next_node] = True
@@ -185,14 +203,26 @@ def allocate_queue():
                             count_port = count_port + 1
 
                 #after get all the results of each server 
+                #need to consider to existing flows to the server that pass through the focusing port as well
 
-                #calculate total bandwidth
-                total_bandwidth = 0
+
+                #show the result
+                
+
+                print name_index[focus_dpid][port_num+1]
                 for i in range(len(switch_nodes),len(switch_nodes)+len(server_nodes)):
                     if node_visited[i]:
-                        print nodes[i] + " : bw " + str(node_avai_bandw[i])
-                        total_bandwidth = total_bandwidth + node_avai_bandw[i]
-                print "total bandwidth for " + nodes[index] + "-eth" + str(port_num+1) + " : " + str(total_bandwidth)
+                        print nodes[i] + " : avai bw " + str(node_avai_bandw[i]) + " : existing bw " + str(get_exists_bandwidth_on_link(index,port_num, (i - len(switch_nodes)) ))
+
+                #print "total bandwidth for " + nodes[index] + "-eth" + str(port_num+1) + " : " + str(total_bandwidth)
+
+                #calculate total bandwidth
+                #total_bandwidth = 0
+                #for i in range(len(switch_nodes),len(switch_nodes)+len(server_nodes)):
+                #    if node_visited[i]:
+                #        print nodes[i] + " : bw " + str(node_avai_bandw[i])
+                #        total_bandwidth = total_bandwidth + node_avai_bandw[i]
+                #print "total bandwidth for " + nodes[index] + "-eth" + str(port_num+1) + " : " + str(total_bandwidth)
 
             port_num = port_num + 1
         index = index + 1
@@ -200,11 +230,11 @@ def allocate_queue():
                  
 
 if __name__ == '__main__':
-    global nodes
-    global server_nodes
-    global switch_nodes
-    global bandwidthout
-    global max_bandwidth
+   # global nodes
+   # global server_nodes
+   # global switch_nodes
+   # global bandwidthout
+   # global max_bandwidth
 
     build_port_name()
 
@@ -250,7 +280,7 @@ if __name__ == '__main__':
         line = topo_detail.readline()
         item = line.split()
 
-    adjacent = [[] for i in range len(switch_nodes)]
+    adjacent = [[] for i in range( len(switch_nodes) )]
 
 
     line = topo_detail.readline()
@@ -262,7 +292,7 @@ if __name__ == '__main__':
                 row.append( nodes.index(item[i]) )
             else:
                 row.append( -1 )
-        adjacent[nodes.index(item[0])] = row
+        adjacent[nodes.index( switches[item[0]] )] = row
 
         line = topo_detail.readline()
         item = line.split()
@@ -277,9 +307,11 @@ if __name__ == '__main__':
         bw_row = [[] for i in range( len(adj_row)) ]
         for i in range( len(bw_row) ):
             row_info = [0 for j in range( len(server)+1 ) ]
+            row_info[0] = max_bandwidth
+            bw_row[i] = row_info
         bandwidthout.append(bw_row)
     
-    parsejson()
+    measure_bandwidth()
 
     #call method to allocate queue on switch periodically
     #it already has a map so it just has to get bandwidth information from polling

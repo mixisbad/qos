@@ -90,9 +90,10 @@ if args.action=='add':
     # using DeviceManager rest API 
     
     command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.srcAddress)
+    print command+"\n"
     result = os.popen(command).read()
     parsedResult = json.loads(result)
-    print command+"\n"
+
     sourceSwitch = parsedResult[0]['attachmentPoint'][0]['switchDPID']
     sourcePort = parsedResult[0]['attachmentPoint'][0]['port']
     

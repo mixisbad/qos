@@ -1,0 +1,22 @@
+node
+s1 00:00:00:00:00:00:00:01
+s2 00:00:00:00:00:00:00:02
+s3 00:00:00:00:00:00:00:03
+s4 00:00:00:00:00:00:00:04
+s5 00:00:00:00:00:00:00:05
+server1 10.0.0.1
+server2 10.0.0.2
+server3 10.0.0.3
+server4 10.0.0.4
+server5 10.0.0.5
+server6 10.0.0.6
+server7 10.0.0.7
+server8 10.0.0.8
+
+adjacent
+00:00:00:00:00:00:00:01 server1 server2 client client s5
+00:00:00:00:00:00:00:02 server3 server4 client client s5
+00:00:00:00:00:00:00:03 server5 server6 client client s5
+00:00:00:00:00:00:00:04 server7 server8 client client s5
+00:00:00:00:00:00:00:05 s1 s2 s3 s4
+
