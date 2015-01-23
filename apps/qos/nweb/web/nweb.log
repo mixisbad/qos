@@ -1,0 +1,39 @@
+ INFO: nweb starting:80:2409
+ INFO: request:GET /nigel.jpg HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.1**Connection: Keep-Alive****:1
+ INFO: SEND:nigel.jpg:1
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 10184
+Connection: close
+Content-Type: image/jpg
+
+:1
+ INFO: nweb starting:80:8572
+ INFO: nweb starting:80:8574
+ INFO: nweb starting:80:8576
+ INFO: nweb starting:80:8578
+ INFO: nweb starting:80:8580
+ INFO: request:GET / HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.16**Connection: Keep-Alive****:1
+ INFO: SEND:index.html:1
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 239
+Connection: close
+Content-Type: text/html
+
+:1
+ INFO: nweb starting:80:3022
+ INFO: nweb starting:80:3024
+ INFO: nweb starting:80:3026
+ INFO: nweb starting:80:3028
+ INFO: nweb starting:80:3030
+ INFO: nweb starting:80:7288
+ INFO: nweb starting:80:7290
+ INFO: nweb starting:80:7292
+ INFO: nweb starting:80:7294
+ INFO: nweb starting:80:7296
+ INFO: nweb starting:80:3005 INFO: nweb starting:80:3007
+
+ INFO: nweb starting:80:3009
+ INFO: nweb starting:80:3011
+ INFO: nweb starting:80:3013

@@ -1,0 +1,62 @@
+ INFO: nweb starting:80:1945
+ERROR: system call:bind Errno=13 exiting pid=1945
+ INFO: nweb starting:8181:2208
+ INFO: nweb starting:8181:2215
+ INFO: request:GET /127.0.0.1/index.html HTTP/1.1**Host: localhost:8181**Connection: keep-alive**Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8**User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/31.0.1650.63 Chrome/31.0.1650.63 Safari/537.36**Accept-Encoding: gzip,deflate,sdch**Accept-Language: en-US,en;q=0.8,th;q=0.6****:1
+NOT FOUND: failed to open file:127.0.0.1/index.html
+ INFO: request:GET /favicon.ico HTTP/1.1**Host: localhost:8181**Connection: keep-alive**Accept: */***User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/31.0.1650.63 Chrome/31.0.1650.63 Safari/537.36**Accept-Encoding: gzip,deflate,sdch**Accept-Language: en-US,en;q=0.8,th;q=0.6****:2
+NOT FOUND: failed to open file:favicon.ico
+ INFO: request:GET /index.html HTTP/1.1**Host: localhost:8181**Connection: keep-alive**Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8**User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/31.0.1650.63 Chrome/31.0.1650.63 Safari/537.36**Accept-Encoding: gzip,deflate,sdch**Accept-Language: en-US,en;q=0.8,th;q=0.6****:3
+ INFO: SEND:index.html:3
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 239
+Connection: close
+Content-Type: text/html
+
+:3
+ INFO: request:GET /nigel.jpg HTTP/1.1**Host: localhost:8181**Connection: keep-alive**Accept: image/webp,*/*;q=0.8**User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/31.0.1650.63 Chrome/31.0.1650.63 Safari/537.36**Referer: http://localhost:8181/index.html**Accept-Encoding: gzip,deflate,sdch**Accept-Language: en-US,en;q=0.8,th;q=0.6****:4
+NOT FOUND: failed to open file:nigel.jpg
+ INFO: nweb starting:10001:5058
+ INFO: nweb starting:10002:5061
+ INFO: nweb starting:10003:5064
+ INFO: nweb starting:10004:5067
+ INFO: nweb starting:10005:5070
+ INFO: nweb starting:10006:5073
+ INFO: nweb starting:10007:5076
+ INFO: request:GET /index.html HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.9:10001**Connection: Keep-Alive****:1
+ INFO: SEND:index.html:1
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 239
+Connection: close
+Content-Type: text/html
+
+:1
+ INFO: request:GET /index.html HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.10:10002**Connection: Keep-Alive****:1
+ INFO: SEND:index.html:1
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 239
+Connection: close
+Content-Type: text/html
+
+:1
+ INFO: request:GET /file500k.blob HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.10:10002**Connection: Keep-Alive****:2
+FORBIDDEN: file extension type not supported:GET /file500k.blob
+ INFO: request:GET /file500k.jpg HTTP/1.1**User-Agent: Wget/1.14 (linux-gnu)**Accept: */***Host: 10.0.0.10:10002**Connection: Keep-Alive****:3
+ INFO: SEND:file500k.jpg:3
+ INFO: Header:HTTP/1.1 200 OK
+Server: nweb/23.0
+Content-Length: 512000
+Connection: close
+Content-Type: image/jpg
+
+:3
+ INFO: nweb starting:10001:4046
+ INFO: nweb starting:10002:4049
+ INFO: nweb starting:10003:4052
+ INFO: nweb starting:10004:4055
+ INFO: nweb starting:10005:4058
+ INFO: nweb starting:10006:4061
+ INFO: nweb starting:10007:4064
