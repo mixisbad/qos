@@ -69880,41 +69880,6 @@ create circuit!!!
 Process 3436 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
-10.0.0.9
-
-add
-Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 556 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
-SIZE http://cs.hbg.psu.edu/file0k.jpg
-Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q01-09
-Deleting circuit
-Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q09-01
-Deleting circuit
-wait time is : 48
-Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
-
-add
-Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 601 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
 curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
 
@@ -69924,43 +69889,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 617 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
-SIZE http://cs.hbg.psu.edu/file0k.jpg
-Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q01-09
-Deleting circuit
-Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q09-01
-Deleting circuit
-wait time is : 134
-Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
-
-add
-Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 660 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
-Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
-
-add
-Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 677 started to create circuit
+Process 3463 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -69984,7 +69913,7 @@ Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 723 started to create circuit
+Process 3492 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
@@ -69996,7 +69925,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 739 started to create circuit
+Process 3518 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -70010,7 +69939,7 @@ specified circuit does not exist
 delete
 Trying to delete QoSPath Q09-01
 Deleting circuit
-start right away
+wait time is : 95
 Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
 curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
 
@@ -70020,7 +69949,7 @@ Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 784 started to create circuit
+Process 3546 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
@@ -70032,7 +69961,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 805 started to create circuit
+Process 3571 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -70056,7 +69985,7 @@ Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 850 started to create circuit
+Process 3599 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
@@ -70068,79 +69997,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 867 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
-SIZE http://cs.hbg.psu.edu/file0k.jpg
-Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q01-09
-Deleting circuit
-Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q09-01
-Deleting circuit
-wait time is : 37
-Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
-
-add
-Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 910 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
-Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
-
-add
-Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 932 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
-SIZE http://cs.hbg.psu.edu/file0k.jpg
-Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q01-09
-Deleting circuit
-Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q09-01
-Deleting circuit
-wait time is : 46
-Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
-
-add
-Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 975 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
-Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
-
-add
-Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 993 started to create circuit
+Process 3624 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -70164,7 +70021,7 @@ Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 1110 started to create circuit
+Process 3655 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
@@ -70176,43 +70033,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 1127 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
-SIZE http://cs.hbg.psu.edu/file0k.jpg
-Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q01-09
-Deleting circuit
-Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
-specified circuit does not exist
-delete
-Trying to delete QoSPath Q09-01
-Deleting circuit
-wait time is : 211
-Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
-
-add
-Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 1171 started to create circuit
-Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
-Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
-Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
-curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
-
-add
-Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
-/home/mininet/floodlight-qos-beta-master/apps/qos
-Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
-create circuit!!!
-./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 1187 started to create circuit
+Process 3680 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -70236,7 +70057,7 @@ Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
-Process 1229 started to create circuit
+Process 3711 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
 Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
@@ -70248,7 +70069,7 @@ Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
 Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
 create circuit!!!
 ./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
-Process 1246 started to create circuit
+Process 3745 started to create circuit
 Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
 Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
 SIZE http://cs.hbg.psu.edu/file0k.jpg
@@ -70262,9 +70083,187 @@ specified circuit does not exist
 delete
 Trying to delete QoSPath Q09-01
 Deleting circuit
-wait time is : 42
+start right away
 Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
 curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3773 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3798 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3829 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3856 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3883 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3909 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3937 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3963 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3993 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 4021 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+wait time is : 38
 
 add
 Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
@@ -71487,3 +71486,399 @@ delete
 Trying to delete QoSPath Q09-01
 Deleting circuit
 wait time is : 21
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3454 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3470 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3510 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3525 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3564 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3578 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+wait time is : 74
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3617 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3631 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+wait time is : 76
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3673 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3687 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+wait time is : 50
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3729 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3752 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+wait time is : 66
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3791 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3806 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3848 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3863 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3902 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3916 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 3955 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 3970 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away
+Namespace(action='add', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.1', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.1
+
+add
+Trying to create a circuit from host 10.0.0.1 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.1 --dst 10.0.0.9 --add --name Q01-09
+Process 4011 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.1 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.1', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.1...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.1 --add --name Q09-01
+Process 4036 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.1...
+SIZE http://cs.hbg.psu.edu/file0k.jpg
+Namespace(action='delete', circuitName='Q01-09', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q01-09
+Deleting circuit
+Namespace(action='delete', circuitName='Q09-01', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q09-01
+Deleting circuit
+start right away

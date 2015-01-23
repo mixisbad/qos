@@ -240,7 +240,7 @@ if __name__ == '__main__':
 
     topo_detail = open('topology_detail.txt','r')
     
-    line = ""
+    line = topo_detail.readline()
     item = line.split()
     #start mapping nodes
     while len(item) == 0 or item[0] != 'node':

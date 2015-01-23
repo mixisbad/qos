@@ -1,0 +1,27 @@
+#! /usr/bin/python
+#  coding: utf-8
+
+import sys
+
+server_nodes = {}
+
+#start mapping nodes
+while len(item) == 0 or item[0] != 'node':
+    line = topo_detail.readline()
+    item = line.split()
+
+
+line = topo_detail.readline()
+item = line.split()
+while len(item) > 0:
+    #found server
+    if "." in item[1]:
+        server_dict = {}
+        server_dict['name'] = item[0]
+        server_dict['queue'] = item[2]
+        server_nodes[item[1]] = server_dict
+
+    line = topo_detail.readline()
+    item = line.split()
+
+#all servers are in server_nodes

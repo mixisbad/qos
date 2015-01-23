@@ -1,5 +1,5 @@
 #!/bin/bash
-predefine="http://cs.hbg.psu.edu"
+#predefine="http://cs.hbg.psu.edu"
 first_rec=1
 forward_factor=1
 prev_req=0
