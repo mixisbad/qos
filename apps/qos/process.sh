@@ -60,11 +60,9 @@ else
     fi
 fi
 
-OUTPUT="$(./qospath2.py -a -N "Q01-09" -c 10.0.2.15 -S 10.0.0.1 -D 10.0.0.9 -J '{"eth-type":"0x0800","protocol":"6","queue":"2"}')"
-echo "${OUTPUT}"
+echo "./select_queue.py "$3" "$2" "$ip" add"
+sleep 2s
 
-OUTPUT="$(./qospath2.py -a -N "Q09-01" -c 10.0.2.15 -S 10.0.0.9 -D 10.0.0.1 -J '{"eth-type":"0x0800","protocol":"6","queue":"2"}')"
-echo "${OUTPUT}"
 
 prev_day=$day
 prev_hour=$hour
@@ -72,14 +70,14 @@ prev_min=$min
 prev_sec=$sec
     
 path=${log##*;}
+
+echo "wget $ip$path -O "$2".out"
+
+echo "./select_queue.py "$3" "$2" "$ip" del"
+sleep 2s
+
 prev_req=$current_req
 
-echo "SIZE "$predefine$path
-sleep 5s
 
-OUTPUT="$(./qospath2.py -d -N "Q01-09" -c 10.0.2.15)"
-echo "${OUTPUT}"
-OUTPUT="$(./qospath2.py -d -N "Q09-01" -c 10.0.2.15)"
-echo "${OUTPUT}"
 
 done < $1

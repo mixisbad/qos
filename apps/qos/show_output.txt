@@ -1,0 +1,1816 @@
+start right away
+100.43.91.21 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+start right away
+100.43.91.21 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+start right away
+157.55.39.110 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.1 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.2 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.3 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.4 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.5 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.6 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.7 157.55.39.110 del
+start right away
+157.55.39.110 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 157.55.39.110 add
+./select_queue.py 10.0.2.15 10.0.0.8 157.55.39.110 del
+wait time is : 50
+207.46.13.66 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.1 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.2 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.3 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.4 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.5 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.6 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.7 207.46.13.66 del
+wait time is : 50
+207.46.13.66 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 207.46.13.66 add
+./select_queue.py 10.0.2.15 10.0.0.8 207.46.13.66 del
+wait time is : 13
+146.186.76.136 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wait time is : 13
+146.186.76.136 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wait time is : 300
+146.186.76.136 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 35
+68.180.225.106 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.1 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.2 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.3 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.4 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.5 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.6 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.7 68.180.225.106 del
+wait time is : 35
+68.180.225.106 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 68.180.225.106 add
+./select_queue.py 10.0.2.15 10.0.0.8 68.180.225.106 del
+wait time is : 22
+100.43.91.21 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+wait time is : 22
+100.43.91.21 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+wait time is : 142
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wait time is : 142
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wait time is : 35
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wait time is : 38
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wait time is : 12
+wait time is : 12
+220.94.172.223 10.0.0.3 10.0.2.15
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wait time is : 12
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.8 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.7 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wait time is : 6
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.6 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+start right away
+220.94.172.223 10.0.0.2 10.0.2.15
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.5 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+start right away
+start right away
+220.94.172.223 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+220.94.172.223 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+start right away
+220.94.172.223 10.0.0.4 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wait time is : 7
+146.186.76.136 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wait time is : 7
+146.186.76.136 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wait time is : 7
+146.186.76.136 10.0.0.3 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wait time is : 259
+100.43.91.21 10.0.0.2 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+wait time is : 259
+100.43.91.21 10.0.0.1 10.0.2.15
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+wget 100.43.91.21/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 157.55.39.110 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 157.55.39.110 add
+wget 157.55.39.110/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 157.55.39.110 del
+wget 157.55.39.110/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 157.55.39.110 del
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.1 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.2 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.3 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.4 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.5 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.6 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.7 207.46.13.66 add
+wait time is : 50
+./select_queue.py 10.0.2.15 10.0.0.8 207.46.13.66 add
+wget 207.46.13.66/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 207.46.13.66 del
+wget 207.46.13.66/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 207.46.13.66 del
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+wget 146.186.76.136/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+wait time is : 300
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+wget 146.186.76.136/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.1 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.2 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.3 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.4 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.5 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.6 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.7 68.180.225.106 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.8 68.180.225.106 add
+wget 68.180.225.106/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 68.180.225.106 del
+wget 68.180.225.106/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 68.180.225.106 del
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+wait time is : 22
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+wget 100.43.91.21/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+wait time is : 142
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+wait time is : 35
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+wait time is : 38
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+wait time is : 12
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 6
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+wait time is : 6
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+start right away
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 add
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 add
+wget 220.94.172.223/file0k.jpg -O 10.0.0.2.out
+wget 220.94.172.223/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.2 220.94.172.223 del
+./select_queue.py 10.0.2.15 10.0.0.1 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 220.94.172.223 del
+wget 220.94.172.223/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 220.94.172.223 del
+wait time is : 7
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+wait time is : 7
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+wget 146.186.76.136/file0k.jpg -O 10.0.0.2.out
+wget 146.186.76.136/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+wait time is : 259
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+wget 100.43.91.21/file0k.jpg -O 10.0.0.1.out
+wget 100.43.91.21/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+wait time is : 41
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+wait time is : 41
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+wget 146.186.76.136/file0k.jpg -O 10.0.0.1.out
+wget 146.186.76.136/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 121
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.2 194.160.126.162 add
+./select_queue.py 10.0.2.15 10.0.0.1 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.3 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.4 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.5 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.6 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.7 194.160.126.162 add
+wait time is : 121
+./select_queue.py 10.0.2.15 10.0.0.8 194.160.126.162 add
+wget 194.160.126.162/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 194.160.126.162 del
+wget 194.160.126.162/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 194.160.126.162 del
+wait time is : 33
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.2 97.96.239.183 add
+./select_queue.py 10.0.2.15 10.0.0.1 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.3 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.4 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.5 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.6 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.7 97.96.239.183 add
+wait time is : 33
+./select_queue.py 10.0.2.15 10.0.0.8 97.96.239.183 add
+wget 97.96.239.183/file0k.jpg -O 10.0.0.1.out
+wget 97.96.239.183/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.1 97.96.239.183 del
+./select_queue.py 10.0.2.15 10.0.0.2 97.96.239.183 del
+wget 97.96.239.183/file0k.jpg -O 10.0.0.3.out
+wget 97.96.239.183/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.3 97.96.239.183 del
+./select_queue.py 10.0.2.15 10.0.0.4 97.96.239.183 del
+wget 97.96.239.183/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 97.96.239.183 del
+wget 97.96.239.183/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 97.96.239.183 del
+wget 97.96.239.183/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 97.96.239.183 del
+wget 97.96.239.183/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 97.96.239.183 del
+wait time is : 5
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.2 218.30.103.122 add
+./select_queue.py 10.0.2.15 10.0.0.1 218.30.103.122 add
+wait time is : 5
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.3 218.30.103.122 add
+./select_queue.py 10.0.2.15 10.0.0.4 218.30.103.122 add
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.5 218.30.103.122 add
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.6 218.30.103.122 add
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.7 218.30.103.122 add
+wait time is : 5
+./select_queue.py 10.0.2.15 10.0.0.8 218.30.103.122 add
+wget 218.30.103.122/file0k.jpg -O 10.0.0.2.out
+wget 218.30.103.122/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.1 218.30.103.122 del
+./select_queue.py 10.0.2.15 10.0.0.2 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.3.out
+wget 218.30.103.122/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.3 218.30.103.122 del
+./select_queue.py 10.0.2.15 10.0.0.4 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 218.30.103.122 del
+start right away
+./select_queue.py 10.0.2.15 10.0.0.2 218.30.103.122 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.1 218.30.103.122 add
+start right away
+start right away
+./select_queue.py 10.0.2.15 10.0.0.4 218.30.103.122 add
+./select_queue.py 10.0.2.15 10.0.0.3 218.30.103.122 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.5 218.30.103.122 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.6 218.30.103.122 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.7 218.30.103.122 add
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 218.30.103.122 add
+wget 218.30.103.122/file0k.jpg -O 10.0.0.1.out
+wget 218.30.103.122/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 218.30.103.122 del
+./select_queue.py 10.0.2.15 10.0.0.1 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.3.out
+wget 218.30.103.122/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.3 218.30.103.122 del
+./select_queue.py 10.0.2.15 10.0.0.4 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 218.30.103.122 del
+wget 218.30.103.122/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 218.30.103.122 del
+wait time is : 149
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 add
+wait time is : 149
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 add
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 add
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 add
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 add
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 add
+wait time is : 149
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 add
+wget 146.186.76.136/file0k.jpg -O 10.0.0.1.out
+wget 146.186.76.136/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.2 146.186.76.136 del
+./select_queue.py 10.0.2.15 10.0.0.1 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.4.out
+wget 146.186.76.136/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.4 146.186.76.136 del
+./select_queue.py 10.0.2.15 10.0.0.3 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 146.186.76.136 del
+wget 146.186.76.136/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 146.186.76.136 del
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 add
+wait time is : 151
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 add
+wget 100.43.91.21/file0k.jpg -O 10.0.0.2.out
+wget 100.43.91.21/file0k.jpg -O 10.0.0.1.out
+./select_queue.py 10.0.2.15 10.0.0.2 100.43.91.21 del
+./select_queue.py 10.0.2.15 10.0.0.1 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.3.out
+./select_queue.py 10.0.2.15 10.0.0.3 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.4 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 100.43.91.21 del
+wget 100.43.91.21/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 100.43.91.21 del
+wait time is : 13
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.2 180.76.5.168 add
+./select_queue.py 10.0.2.15 10.0.0.1 180.76.5.168 add
+wait time is : 13
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.3 180.76.5.168 add
+./select_queue.py 10.0.2.15 10.0.0.4 180.76.5.168 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.5 180.76.5.168 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.6 180.76.5.168 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.7 180.76.5.168 add
+wait time is : 13
+./select_queue.py 10.0.2.15 10.0.0.8 180.76.5.168 add
+wget 180.76.5.168/file0k.jpg -O 10.0.0.1.out
+wget 180.76.5.168/file0k.jpg -O 10.0.0.2.out
+./select_queue.py 10.0.2.15 10.0.0.1 180.76.5.168 del
+./select_queue.py 10.0.2.15 10.0.0.2 180.76.5.168 del
+wget 180.76.5.168/file0k.jpg -O 10.0.0.3.out
+wget 180.76.5.168/file0k.jpg -O 10.0.0.4.out
+./select_queue.py 10.0.2.15 10.0.0.3 180.76.5.168 del
+./select_queue.py 10.0.2.15 10.0.0.4 180.76.5.168 del
+wget 180.76.5.168/file0k.jpg -O 10.0.0.5.out
+./select_queue.py 10.0.2.15 10.0.0.5 180.76.5.168 del
+wget 180.76.5.168/file0k.jpg -O 10.0.0.6.out
+./select_queue.py 10.0.2.15 10.0.0.6 180.76.5.168 del
+wget 180.76.5.168/file0k.jpg -O 10.0.0.7.out
+./select_queue.py 10.0.2.15 10.0.0.7 180.76.5.168 del
+wget 180.76.5.168/file0k.jpg -O 10.0.0.8.out
+./select_queue.py 10.0.2.15 10.0.0.8 180.76.5.168 del
