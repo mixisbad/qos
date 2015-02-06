@@ -3,6 +3,7 @@
 first_rec=1
 forward_factor=1
 prev_req=0
+count=0
 
 while read -r line || [[ -n $line ]]
 do
@@ -55,12 +56,15 @@ else
 	echo "start right away"
     else
 	
-	sleep=$((tmpsleep - sleep))
+	sleeptime=$((tmpsleep - sleep))
 	echo "wait time is : "$((sleeptime / forward_factor))
+	sleep $sleeptime"s"
     fi
 fi
 
-echo "./select_queue.py "$3" "$2" "$ip" add"
+printf "./select_queue.py "$3" "$2" "$ip" add Q"$2"-"$ip"-"$count"\n"
+./select_queue.py $3 $2 $ip "add" "Q"$2"-"$ip"-"$count
+#printf "add Q"$2"-"$ip"-"$count"\n"
 sleep 2s
 
 
@@ -71,13 +75,19 @@ prev_sec=$sec
     
 path=${log##*;}
 
-echo "wget $ip$path -O "$2".out"
+#wget $ip$path
+printf "wget "$ip$path"\n"
 
-echo "./select_queue.py "$3" "$2" "$ip" del"
+sleep 20s
+
+printf "./select_queue.py "$3" "$2" "$ip" del Q"$2"-"$ip"-"$count"\n"
+./select_queue.py $3 $2 $ip "del" "Q"$2"-"$ip"-"$count
+#printf "del Q"$2"-"$ip"-"$count"\n"
 sleep 2s
 
 prev_req=$current_req
 
-
+count=$((count + 1))
+count=$((count % 100))
 
 done < $1

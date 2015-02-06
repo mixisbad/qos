@@ -14,6 +14,14 @@ server = {}
 switches = {}
 switches_dpid = {}
 adjacent = []
+
+
+existing_rules = {}
+
+max_column = 0
+
+#indicate max bandwidth on each link
+speed = []
 max_bandwidth = 10
 
 #linkbandwidth = 10.0
@@ -23,6 +31,8 @@ traffic_data = {}
 name_index = {}
 bandwidthout = [[]]
 f_ptr = 0
+
+flow_map = {}
 
 #dummy data for test
 #poll_map = [
@@ -65,29 +75,53 @@ def measure_bandwidth():
 
     f_ptr = io.open(traffic_file_name,'w',encoding='utf-8')
     new_traffic_data = {}
+
+    tmp_count_flow = [[] for i in range( len(adjacent))]
+    for i in range( len(tmp_count_flow)):
+        tmp_count_flow[i] = [[] for j in range( len(adjacent[i]) )]
+        for j in range ( len( tmp_count_flow[i]) ):
+            tmp_count_flow[i][j] = [0 for k in range( len(server_nodes))]
+
+
     switch_dicts = json.loads(line)
     for switch_id in switch_dicts:
         if switch_id in name_index:
+
             switch_index = nodes.index(switches[switch_id])
+
+            
+            #print "sw : "
+            #print switch_id
+            #print tmp_count_flow
+            #print server
+            #print server_nodes
+            #print nodes
+
             for flow in switch_dicts[switch_id]:
                 match = flow["match"]
+                key_match = match["networkDestination"]+match["networkSource"]
                 actions = flow["actions"]
 
+
                 for action in actions:
+                    #in case it want to connect with controller, using NAT to connect outside topology
+                    if int(action["port"]) > len(bandwidthout[switch_index]):
+                        continue
+
                     if action["type"] == "OUTPUT" or action["type"] == "OPAQUE_ENQUEUE":
                         total_duration = 0
                         total_byte = 0
                         found = False
                         if (switch_id,action["port"]) in traffic_data:
                             temp_traffic = traffic_data[(switch_id,action["port"])]
-                            if str(match) in temp_traffic:
-                                found = True
-                                temp_flow = temp_traffic[str(match)]
+                            if key_match in temp_traffic:
+                                temp_flow = temp_traffic[key_match]
                                 old_duration = temp_flow["duration"]
                                 old_bytecount = temp_flow["byteCount"]
                                 total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)-old_duration
-                                total_byte = flow["byteCount"]-old_bytecount
-                            
+                                if total_duration >= 0:
+                                    found = True
+                                    total_byte = flow["byteCount"]-old_bytecount                            
                         if not found:
                             total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
                             total_byte = flow["byteCount"]
@@ -97,36 +131,76 @@ def measure_bandwidth():
                         #add information into globall traffic data for next iteration 
                         if buildkey not in new_traffic_data:
                             new_traffic_data[buildkey] = {}
-                        new_traffic_data[buildkey][str(match)] = {}
-                        new_traffic_data[buildkey][str(match)]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
-                        new_traffic_data[buildkey][str(match)]["byteCount"] = flow["byteCount"]
+
+                        #instead of using the whole match use only src,dst will be fine for this testing
+                        new_traffic_data[buildkey][key_match] = {}
+                        new_traffic_data[buildkey][key_match]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
+                        new_traffic_data[buildkey][key_match]["byteCount"] = flow["byteCount"]
                         
-                        bw = ((total_byte*8)/(total_duration))/1000000
-                        bandwidthout[switch_index][action["port"]-1][0] = bandwidthout[switch_index][action["port"]-1][0] - bw
+                        if total_duration > 0:
+                            bw = ((total_byte*8)/(total_duration))/1000000
+                        else:
+                            bw = 0
+                        #print "raw sw : " + switch_id
+                        #print "sw id : " + str(switch_index)
+                        #print "raw port : " + str(action["port"])
+                        #print "port : " + str(int(action["port"])-1)
+                        #print bandwidthout[switch_index]
+                        bandwidthout[switch_index][int(action["port"])-1][0] = bandwidthout[switch_index][int(action["port"])-1][0] - bw
 
                         destination = match["networkDestination"]
-                        print "destination : " + destination 
+                        source = match["networkSource"]
+                        #print "destination : " + destination 
                         if destination in server:
-                            server_name = server[destination]
-                            server_index = server_nodes.index(server_name)+1
-                            bandwidthout[switch_index][action["port"]-1][server_index] = bandwidthout[switch_index][action["port"]-1][server_index] + bw
+                            #server_name = server[destination]['name']
+                            #server_index = server_nodes.index(server_name)+1
+
+                            #add 1 because bandwidth out want to reserve [0] for available bandwidth
+                            server_index = server[destination]['id']+1
+                            #print "server index : " + str(server_index)
+                            bandwidthout[switch_index][int(action["port"])-1][server_index] = bandwidthout[switch_index][int(action["port"])-1][server_index] + bw
+                            #print tmp_count_flow[switch_index]
+                            # subtract 1 because use 0 base to count
+                            tmp_count_flow[switch_index][int(action["port"])-1][server_index-1] = tmp_count_flow[switch_index][int(action["port"])-1][server_index-1] + 1
+                            print adjacent
+                            #check if it is the src node
+                            server_name = server[destination]['name']
+                            server_nodes_index = nodes.index(server_name)
+                            if server_nodes_index in adjacent[switch_index]:
+                                #need to be stored. So we can track along the path and see the minimum one
+                                rules_name = source+"-"+destination
+                            
+                        elif source in server:
+                            server_index = server[source]['id']+1
+                            #print "server index : " + str(server_index)
+                            bandwidthout[switch_index][int(action["port"])-1][server_index] = bandwidthout[switch_index][int(action["port"])-1][server_index] + bw
+                            #print tmp_count_flow[switch_index]
+                            # subtract 1 because use 0 base to count
+                            tmp_count_flow[switch_index][int(action["port"])-1][server_index-1] = tmp_count_flow[switch_index][int(action["port"])-1][server_index-1] + 1
+                            
+                            
+    print tmp_count_flow
+                            #print "after count"
+                            
 
     #previously write number of switches and assume they all have less/equal than maxport
-    #f_ptr.write(str(switchnum) + "\t" + str(switchnumport) + "\n")
+    f_ptr.write( unicode(str(len(switches)) + "\n"))
+
 
     #need to change into a list of how many switches and how many port each switch has
 
-#if switch_id in name_index:
-#switch_index = nodes.index(switches[switch_id])
+    #if switch_id in name_index:
+    #switch_index = nodes.index(switches[switch_id])
     for key in name_index:
         f_ptr.write(key + "\n" + str(nodes.index( switches[key] )) +"\n")
 
     #print bandwidthout
 
-    #for sw in bandwidthout:
-    #    for port in sw :
-    #        f_ptr.write(str(port[0]) + " ")
-    #    f_ptr.write("\n")
+    for sw in bandwidthout:
+        f_ptr.write( unicode(str(len(sw)) + " "))
+        for port in sw :
+            f_ptr.write(unicode( str( port[0] if port[0] >= 0 else 0)  + " "))
+        f_ptr.write(u"\n")
     #print("-----------------------------------------------------")
     f_ptr.closed
     traffic_data = new_traffic_data
@@ -175,7 +249,6 @@ def allocate_queue():
                 #use max_bandwidth - bandwidth to be able to sort with priority queue
                 process_queue.put( (max_bandwidth - bandwidth, outport) )
                 node_visited[outport] = True
-
                 #start a modified Dijkstra
                 while not process_queue.empty():
                     item = process_queue.get()
@@ -227,14 +300,49 @@ def allocate_queue():
             port_num = port_num + 1
         index = index + 1
 
-                 
+def allocate_bandwidthout():
+    global bandwidthout
+    global adjacent
+
+    #initial banwidthout
+    bandwidthout = []
+    for adj_row in adjacent:
+        bw_row = [[] for i in range( len(adj_row)) ]
+        for i in range( len(bw_row) ):
+            bw_row[i] = [[] for j in range( len(server_nodes)+1 ) ]
+        bandwidthout.append(bw_row)
+
+def reset_bandwidthout():
+    global bandwidthout
+    global speed
+    #initial banwidthouy
+    for i in range( len(bandwidthout) ):
+        bw_row = bandwidthout[i]
+        for j in range( len(bw_row) ):
+            bw_row[j][0] = speed[i][j]
+            for k in range ( 1, len(server_nodes)+1):
+                bw_row[j][k] = 0
+
+def display_bandwidthout():
+    global bandwidthout
+    #initial banwidthouy
+    for i in range( len(bandwidthout) ):
+        bw_row = bandwidthout[i]
+        for j in range( len(bw_row) ):
+            print str(bw_row[j]) + " "
+        print "\n"
+
 
 if __name__ == '__main__':
-   # global nodes
-   # global server_nodes
-   # global switch_nodes
-   # global bandwidthout
-   # global max_bandwidth
+    #global nodes
+    #global server_nodes
+    #global switch_nodes
+    #global switches
+    #global servers
+    #global adjacent
+    #global speed
+    #global bandwidthout
+    #global max_bandwidth
 
     build_port_name()
 
@@ -242,6 +350,8 @@ if __name__ == '__main__':
     
     line = topo_detail.readline()
     item = line.split()
+
+
     #start mapping nodes
     while len(item) == 0 or item[0] != 'node':
         line = topo_detail.readline()
@@ -254,8 +364,11 @@ if __name__ == '__main__':
 
         #found server
         if "." in item[1]:
+            server[item[1]] = {}
+            server[item[1]]['name'] = item[0]
+            server[item[1]]['id'] = len(server_nodes)
             server_nodes.append(item[0])
-            server[item[1]] = item[0]
+            
 
         #found switch
         elif ":" in item[1]:
@@ -281,35 +394,48 @@ if __name__ == '__main__':
         item = line.split()
 
     adjacent = [[] for i in range( len(switch_nodes) )]
+    speed = [[] for i in range( len(switch_nodes) )]
 
 
     line = topo_detail.readline()
     item = line.split()
     while len(item) > 0:
         row = []
+        speed_row = []
+        item_info = []
         for i in range(1,len(item)):
-            if item[i] in nodes:
-                row.append( nodes.index(item[i]) )
+            item_info = item[i].split(',')
+            if item_info[0] in nodes:
+                row.append( nodes.index(item_info[0]) )
             else:
                 row.append( -1 )
+            speed_row.append(float(item_info[1]))
         adjacent[nodes.index( switches[item[0]] )] = row
+        speed[nodes.index(switches[item[0]])] = speed_row
+
+        if len(row) > max_column:
+            max_column = len(row)
 
         line = topo_detail.readline()
         item = line.split()
 
+    print adjacent
+
     
+#    for speed_row in speed:
+#        for speed_detail in speed_row:
+#            print speed_detail + " "
+#        print "\n"
 
-    #begin the loop 
+     
 
-    #initial banwidthout
-    bandwidthout = []
-    for adj_row in adjacent:
-        bw_row = [[] for i in range( len(adj_row)) ]
-        for i in range( len(bw_row) ):
-            row_info = [0 for j in range( len(server)+1 ) ]
-            row_info[0] = max_bandwidth
-            bw_row[i] = row_info
-        bandwidthout.append(bw_row)
+    allocate_bandwidthout()
+
+    #begin the loop
+
+    reset_bandwidthout()
+
+    display_bandwidthout()
     
     measure_bandwidth()
 
@@ -318,6 +444,6 @@ if __name__ == '__main__':
     #assume all the bandwidth available in every link is 3000000 for now
     #need to merge this code and polling.py together
             
-    allocate_queue()
+    #allocate_queue()
     
     #end the loop

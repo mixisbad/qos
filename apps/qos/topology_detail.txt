@@ -4,19 +4,19 @@ s2 00:00:00:00:00:00:00:02
 s3 00:00:00:00:00:00:00:03
 s4 00:00:00:00:00:00:00:04
 s5 00:00:00:00:00:00:00:05
-server1 10.0.0.16 1
-server2 10.0.0.17 2
-server3 10.0.0.18 3
-server4 10.0.0.19 4
-server5 10.0.0.20 5
-server6 10.0.0.21 6
-server7 10.0.0.22 7
-server8 10.0.0.23 8
+server1 10.0.0.9 1
+server2 10.0.0.10 2
+server3 10.0.0.11 3
+server4 10.0.0.12 4
+server5 10.0.0.13 5
+server6 10.0.0.14 6
+server7 10.0.0.15 7
+server8 10.0.0.16 8
 
 adjacent
-00:00:00:00:00:00:00:01 server1 server2 client client s5
-00:00:00:00:00:00:00:02 server3 server4 client client s5
-00:00:00:00:00:00:00:03 server5 server6 client client s5
-00:00:00:00:00:00:00:04 server7 server8 client client s5
-00:00:00:00:00:00:00:05 s1 s2 s3 s4
+00:00:00:00:00:00:00:01 server1,1 server2,1 client,1 client,1 s5,1
+00:00:00:00:00:00:00:02 server3,2 server4,2 client,2 client,2 s5,2
+00:00:00:00:00:00:00:03 server5,3 server6,3 client,3 client,3 s5,3
+00:00:00:00:00:00:00:04 server7,4 server8,4 client,4 client,4 s5,4
+00:00:00:00:00:00:00:05 s1,5 s2,5 s3,5 s4,5
 

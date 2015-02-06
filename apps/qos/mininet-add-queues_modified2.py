@@ -79,10 +79,16 @@ for i in range(len(switches)):
 #print config_strings
 for sw in switches:
     queuecmd = "sudo ovs-vsctl %s -- --id=@defaultqos " % config_strings[sw]
-    queuecmd = queuecmd + "create qos type=linux-htb other-config:max-rate=3000000 queues=0=@q0,1=@q1,2=@q2 -- "
-    queuecmd = queuecmd + "--id=@q0 create queue other-config:max-rate=3000000 -- "
-    queuecmd = queuecmd + "--id=@q1 create queue other-config:max-rate=2000000 -- "
-    queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=2000000 other-config:min-rate=2000000" 
+    queuecmd = queuecmd + "create qos type=linux-htb other-config:max-rate=3000000 queues=0=@q0,1=@q1,2=@q2,3=@q3,4=@q4,5=@q5,6=@q6,7=@q7,8=@q8 -- "
+    queuecmd = queuecmd + "--id=@q0 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- "
+    queuecmd = queuecmd + "--id=@q1 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- "
+    queuecmd = queuecmd + "--id=@q2 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q3 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q4 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q5 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q6 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q7 create queue other-config:max-rate=10000000 other-config:min-rate=0 -- " 
+    queuecmd = queuecmd + "--id=@q8 create queue other-config:max-rate=10000000 other-config:min-rate=0"
     #print queuecmd
     #print ""
     #print ""
