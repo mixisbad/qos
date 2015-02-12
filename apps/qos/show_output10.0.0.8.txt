@@ -1,0 +1,2830 @@
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-0
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+Creating circuit:
+from source device at switch 00:00:00:00:00:00:00:04 port 4
+to destination device at switch 00:00:00:00:00:00:00:03 port 1
+curl -s http://10.0.2.15:8080/wm/topology/route/00:00:00:00:00:00:00:04/4/00:00:00:00:00:00:00:03/1/json
+
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+
+00:00:00:00:00:00:00:04 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:04 5
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 3
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 5
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 1
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Adding Policy: Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04"}
+Expecting value: line 1 column 1 (char 0)
+Could Not Complete Request
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "3",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Adding Policy: Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05"}
+Expecting value: line 1 column 1 (char 0)
+Could Not Complete Request
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "1",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Adding Policy: Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03"}
+Expecting value: line 1 column 1 (char 0)
+Could Not Complete Request
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-0f
+Process 14638 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+QoS applied to switch 00:00:00:00:00:00:00:04 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:04: in:4 out:5
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:05 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:05: in:4 out:3
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "3",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:03 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:03: in:5 out:1
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "1",
+   "eth-type": "0x0800"
+}
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+Creating circuit:
+from source device at switch 00:00:00:00:00:00:00:03 port 1
+to destination device at switch 00:00:00:00:00:00:00:04 port 4
+curl -s http://10.0.2.15:8080/wm/topology/route/00:00:00:00:00:00:00:03/1/00:00:00:00:00:00:00:04/4/json
+
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+
+00:00:00:00:00:00:00:03 1
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:03 5
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:05 3
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:05 4
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:04 5
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:04 4
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:11:19 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:11:23 2015", "name": "Q10.0.0.6-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:11:23 2015", "name": "Q10.0.0.5-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:11:23 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:11:23 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:11:23 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:04"}
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Adding Policy: Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:03"}
+Writing policy to qos.state.json
+Closed connection successfully
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "4",
+   "eth-type": "0x0800"
+}
+[Errno 104] Connection reset by peer
+Could Not Complete Request
+Could not connect to server: 10.0.2.15:8080
+[Errno 110] Connection timed out
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-0b
+Process 14790 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+QoS applied to switch 00:00:00:00:00:00:00:03 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:03: in:1 out:5
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:05 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:05: in:3 out:4
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "4",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:04 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:04: in:5 out:4
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "4",
+   "eth-type": "0x0800"
+}
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-0']
+wget 10.0.0.13/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-0
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+{u'outPort': 5, u'Dpid': u'00:00:00:00:00:00:00:04', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:11:19 2015'} 00:00:00:00:00:00:00:04
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 3, u'Dpid': u'00:00:00:00:00:00:00:05', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:11:19 2015'} 00:00:00:00:00:00:00:05
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 1, u'Dpid': u'00:00:00:00:00:00:00:03', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 5, u'datetime': u'Fri Feb  6 10:11:19 2015'} 00:00:00:00:00:00:00:03
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+{u'outPort': 5, u'Dpid': u'00:00:00:00:00:00:00:03', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 1, u'datetime': u'Fri Feb  6 10:11:23 2015'} 00:00:00:00:00:00:00:03
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 4, u'Dpid': u'00:00:00:00:00:00:00:05', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 3, u'datetime': u'Fri Feb  6 10:11:23 2015'} 00:00:00:00:00:00:00:05
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 4, u'Dpid': u'00:00:00:00:00:00:00:04', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 5, u'datetime': u'Fri Feb  6 10:11:23 2015'} 00:00:00:00:00:00:00:04
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-0']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-1
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:19:13 2015", "name": "Q10.0.0.2-10.0.0.13-1f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:19:13 2015", "name": "Q10.0.0.2-10.0.0.13-1f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:19:13 2015", "name": "Q10.0.0.2-10.0.0.13-1f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:20:26 2015", "name": "Q10.0.0.2-10.0.0.13-1b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:20:26 2015", "name": "Q10.0.0.2-10.0.0.13-1b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:20:26 2015", "name": "Q10.0.0.2-10.0.0.13-1b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:01"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-1f
+Process 815 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:19:16 2015", "name": "Q10.0.0.1-10.0.0.13-1f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:20:38 2015", "name": "Q10.0.0.1-10.0.0.13-1b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:01"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-1b
+Process 878 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-1']
+wget 10.0.0.13/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-1
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-1f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-1f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-1b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-1b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-1']
+wait time is : 31
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.12 add Q10.0.0.8-10.0.0.12-2
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.12-2f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.12', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.12...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.12 --add --name Q10.0.0.8-10.0.0.12-2f
+Process 1210 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.12...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.12-2b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.12', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.12
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.12 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.12 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.12-2b
+Process 1234 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.12 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.12', 'add', 'Q10.0.0.8-10.0.0.12-2']
+wget 10.0.0.12/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.12 del Q10.0.0.8-10.0.0.12-2
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.12-2f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.12-2f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.12-2b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.12-2b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.12', 'del', 'Q10.0.0.8-10.0.0.12-2']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.9 add Q10.0.0.8-10.0.0.9-3
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.9-3f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.9', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.9...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.9 --add --name Q10.0.0.8-10.0.0.9-3f
+Process 1337 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.9...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.9-3b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.9', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.9
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.9 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.9 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.9-3b
+Process 1350 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.9 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.9', 'add', 'Q10.0.0.8-10.0.0.9-3']
+wget 10.0.0.9/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.9 del Q10.0.0.8-10.0.0.9-3
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.9-3f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.9-3f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.9-3b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.9-3b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.9', 'del', 'Q10.0.0.8-10.0.0.9-3']
+wait time is : 31
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-4
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-4f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-4f
+Process 1877 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-4b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-4b
+Process 1931 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-4']
+wget 10.0.0.13/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-4
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-4f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-4f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-4b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-4b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-4']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.11 add Q10.0.0.8-10.0.0.11-5
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.11-5f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.11', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.11...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.11 --add --name Q10.0.0.8-10.0.0.11-5f
+Process 2092 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.11...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.11-5b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.11', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.11
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.11 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.11 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.11-5b
+Process 2131 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.11 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.11', 'add', 'Q10.0.0.8-10.0.0.11-5']
+wget 10.0.0.11/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.11 del Q10.0.0.8-10.0.0.11-5
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.11-5f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.11-5f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.11-5b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.11-5b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.11', 'del', 'Q10.0.0.8-10.0.0.11-5']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.12 add Q10.0.0.8-10.0.0.12-6
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.12-6f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.12', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.12...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.12 --add --name Q10.0.0.8-10.0.0.12-6f
+Process 2264 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.12...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.12-6b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.12', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.12
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.12 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.12 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.12-6b
+Process 2282 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.12 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.12', 'add', 'Q10.0.0.8-10.0.0.12-6']
+wget 10.0.0.12/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.12 del Q10.0.0.8-10.0.0.12-6
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.12-6f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.12-6f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.12-6b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.12-6b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.12', 'del', 'Q10.0.0.8-10.0.0.12-6']
+wait time is : 30
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-7
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-7f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-7f
+Process 2639 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-7b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-7b
+Process 2701 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-7']
+wget 10.0.0.13/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-7
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-7f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-7f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-7b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-7b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-7']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-8
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-8f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-8f
+Process 2892 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-8b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-8b
+Process 2952 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-8']
+wget 10.0.0.13/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-8
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-8f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-8f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-8b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-8b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-8']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.14 add Q10.0.0.8-10.0.0.14-9
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.14-9f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.14', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.14...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.14 --add --name Q10.0.0.8-10.0.0.14-9f
+Process 3147 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.14...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.14-9b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.14', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.14
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.14 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.14 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.14-9b
+Process 3164 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.14 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.14', 'add', 'Q10.0.0.8-10.0.0.14-9']
+wget 10.0.0.14/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.14 del Q10.0.0.8-10.0.0.14-9
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.14-9f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.14-9f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.14-9b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.14-9b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.14', 'del', 'Q10.0.0.8-10.0.0.14-9']
+wait time is : 31
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.14 add Q10.0.0.8-10.0.0.14-10
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.14-10f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.14', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.14...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.14 --add --name Q10.0.0.8-10.0.0.14-10f
+Process 3561 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.14...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.14-10b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.14', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.14
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.14 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.14 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.14-10b
+Process 3615 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.14 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.14', 'add', 'Q10.0.0.8-10.0.0.14-10']
+wget 10.0.0.14/file500k.jpg
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.14 del Q10.0.0.8-10.0.0.14-10
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.14-10f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.14-10f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.14-10b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.14-10b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.14', 'del', 'Q10.0.0.8-10.0.0.14-10']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-11
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-11f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-11f
+Process 3818 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-11b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-11b
+Process 3872 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-11']
+wget 10.0.0.13/file500k.jpg
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-0
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+Creating circuit:
+from source device at switch 00:00:00:00:00:00:00:04 port 4
+to destination device at switch 00:00:00:00:00:00:00:03 port 1
+curl -s http://10.0.2.15:8080/wm/topology/route/00:00:00:00:00:00:00:04/4/00:00:00:00:00:00:00:03/1/json
+
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+
+00:00:00:00:00:00:00:04 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:04 5
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 3
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 5
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 1
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Error!, This policy already exists!"}
+Writing policy to qos.state.json
+Closed connection successfully
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "3",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Error!, This policy already exists!"}
+Expecting property name enclosed in double quotes: line 262 column 10 (char 8192)
+Could Not Complete Request
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "1",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Error!, This policy already exists!"}
+Writing policy to qos.state.json
+Closed connection successfully
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-0f
+Process 7151 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+QoS applied to switch 00:00:00:00:00:00:00:04 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:04: in:4 out:5
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:05 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:05: in:4 out:3
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "3",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:03 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:03: in:5 out:1
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "1",
+   "eth-type": "0x0800"
+}
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+Creating circuit:
+from source device at switch 00:00:00:00:00:00:00:03 port 1
+to destination device at switch 00:00:00:00:00:00:00:04 port 4
+curl -s http://10.0.2.15:8080/wm/topology/route/00:00:00:00:00:00:00:03/1/00:00:00:00:00:00:00:04/4/json
+
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+
+00:00:00:00:00:00:00:03 1
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:03 5
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:05 3
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:05 4
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:04 5
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+00:00:00:00:00:00:00:04 4
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.f", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.r", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:03","port":1},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:04","port":4}]
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:29 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.6-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.5-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 2, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 2, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.8-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:04"}
+Connection Successful
+Trying to add policy {
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+[CONTROLLER]: {"status" : "Error!, This policy already exists!"}
+[QoSPusher]: Policy Already Exists
+Closed connection successfully
+Could not connect to server: 10.0.2.15:8080
+[Errno 113] No route to host
+Could not connect to server: 10.0.2.15:8080
+[Errno 113] No route to host
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-0b
+Process 7373 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+QoS applied to switch 00:00:00:00:00:00:00:03 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:03: in:1 out:5
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:05 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:05: in:3 out:4
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "4",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:04 for circuit Q10.0.0.8-10.0.0.13-0b
+00:00:00:00:00:00:00:04: in:5 out:4
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.13",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0b.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.8",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "4",
+   "eth-type": "0x0800"
+}
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-0']
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-0
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+{u'outPort': 5, u'Dpid': u'00:00:00:00:00:00:00:04', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:36:30 2015'} 00:00:00:00:00:00:00:04
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 3, u'Dpid': u'00:00:00:00:00:00:00:05', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:36:30 2015'} 00:00:00:00:00:00:00:05
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 1, u'Dpid': u'00:00:00:00:00:00:00:03', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 5, u'datetime': u'Fri Feb  6 10:36:30 2015'} 00:00:00:00:00:00:00:03
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+{u'outPort': 5, u'Dpid': u'00:00:00:00:00:00:00:03', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 1, u'datetime': u'Fri Feb  6 10:36:35 2015'} 00:00:00:00:00:00:00:03
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 4, u'Dpid': u'00:00:00:00:00:00:00:05', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 3, u'datetime': u'Fri Feb  6 10:36:35 2015'} 00:00:00:00:00:00:00:05
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 4, u'Dpid': u'00:00:00:00:00:00:00:04', u'name': u'Q10.0.0.8-10.0.0.13-0b', u'inPort': 5, u'datetime': u'Fri Feb  6 10:36:35 2015'} 00:00:00:00:00:00:00:04
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.f", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.farp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.r", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0b.rarp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-0']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-1
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:36:30 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 2, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.3-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 2, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 4, "datetime": "Fri Feb  6 10:36:35 2015", "name": "Q10.0.0.4-10.0.0.13-0b", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-1f
+Process 9753 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 2, "datetime": "Fri Feb  6 00:47:35 2015", "name": "Q10.0.0.7-10.0.0.12-90f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:02"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-1b
+Process 9948 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-1']
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-1
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-1f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-1f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-1b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-1b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-1']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-0
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+Creating circuit:
+from source device at switch 00:00:00:00:00:00:00:04 port 4
+to destination device at switch 00:00:00:00:00:00:00:03 port 1
+curl -s http://10.0.2.15:8080/wm/topology/route/00:00:00:00:00:00:00:04/4/00:00:00:00:00:00:00:03/1/json
+
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+
+00:00:00:00:00:00:00:04 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:04 5
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:04", "name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 4
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:05 3
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"4","active":"true", "actions":"output=3"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:05", "name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"3","active":"true", "actions":"output=4"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 5
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+00:00:00:00:00:00:00:03 1
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "src-ip":"10.0.0.8", "dst-ip":"10.0.0.13", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"5","active":"true", "actions":"output=1"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "src-ip":"10.0.0.13", "dst-ip":"10.0.0.8", "ether-type":"0x800", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s -d '{"switch": "00:00:00:00:00:00:00:03", "name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "ether-type":"0x806", "cookie":"0", "priority":"32768", "ingress-port":"1","active":"true", "actions":"output=5"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -s http://10.0.2.15:8080/wm/core/switch/all/flow/json| python -mjson.tool
+[{"switch":"00:00:00:00:00:00:00:04","port":4},{"switch":"00:00:00:00:00:00:00:04","port":5},{"switch":"00:00:00:00:00:00:00:05","port":4},{"switch":"00:00:00:00:00:00:00:05","port":3},{"switch":"00:00:00:00:00:00:00:03","port":5},{"switch":"00:00:00:00:00:00:00:03","port":1}]
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+Could not connect to server: 10.0.2.15:8080
+[Errno 113] No route to host
+Could not connect to server: 10.0.2.15:8080
+[Errno 113] No route to host
+Could not connect to server: 10.0.2.15:8080
+[Errno 113] No route to host
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-0f
+Process 8803 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+QoS applied to switch 00:00:00:00:00:00:00:04 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:04: in:4 out:5
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:04",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:04",
+   "queue": "5",
+   "enqueue-port": "5",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:05 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:05: in:4 out:3
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:05",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:05",
+   "queue": "5",
+   "enqueue-port": "3",
+   "eth-type": "0x0800"
+}
+QoS applied to switch 00:00:00:00:00:00:00:03 for circuit Q10.0.0.8-10.0.0.13-0f
+00:00:00:00:00:00:00:03: in:5 out:1
+Adding Queueing Rule
+{
+   "ip-src": "10.0.0.8",
+   "protocol": "6",
+   "name": "Q10.0.0.8-10.0.0.13-0f.00:00:00:00:00:00:00:03",
+   "ip-dst": "10.0.0.13",
+   "sw": "00:00:00:00:00:00:00:03",
+   "queue": "5",
+   "enqueue-port": "1",
+   "eth-type": "0x0800"
+}
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.8-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-0b
+Process 9295 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-0']
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 del Q10.0.0.8-10.0.0.13-0
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0f', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+{u'outPort': 5, u'Dpid': u'00:00:00:00:00:00:00:04', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:49:04 2015'} 00:00:00:00:00:00:00:04
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:04.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:04"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 3, u'Dpid': u'00:00:00:00:00:00:00:05', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 4, u'datetime': u'Fri Feb  6 10:49:04 2015'} 00:00:00:00:00:00:00:05
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:05.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:05"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+{u'outPort': 1, u'Dpid': u'00:00:00:00:00:00:00:03', u'name': u'Q10.0.0.8-10.0.0.13-0f', u'inPort': 5, u'datetime': u'Fri Feb  6 10:49:04 2015'} 00:00:00:00:00:00:00:03
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.f", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.farp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.r", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+curl -X DELETE -d '{"name":"00:00:00:00:00:00:00:03.Q10.0.0.8-10.0.0.13-0f.rarp", "switch":"00:00:00:00:00:00:00:03"}' http://10.0.2.15:8080/wm/staticflowentrypusher/json
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0f
+Deleting circuit
+Namespace(action='delete', circuitName='Q10.0.0.8-10.0.0.13-0b', controllerRestIp='10.0.2.15:8080', dstAddress='0.0.0.0', srcAddress='0.0.0.0', type='ip')
+specified circuit does not exist
+delete
+Trying to delete QoSPath Q10.0.0.8-10.0.0.13-0b
+Deleting circuit
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'del', 'Q10.0.0.8-10.0.0.13-0']
+start right away
+./select_queue.py 10.0.2.15 10.0.0.8 10.0.0.13 add Q10.0.0.8-10.0.0.13-1
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1f', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.13', srcAddress='10.0.0.8', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.8
+
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+add
+Trying to create a circuit from host 10.0.0.8 to host 10.0.0.13...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.8 --dst 10.0.0.13 --add --name Q10.0.0.8-10.0.0.13-1f
+Process 9335 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.8 to host 10.0.0.13...
+Namespace(action='add', circuitName='Q10.0.0.8-10.0.0.13-1b', controllerRestIp='10.0.2.15:8080', dstAddress='10.0.0.8', srcAddress='10.0.0.13', type='ip')
+curl -s http://10.0.2.15:8080/wm/device/?ipv4=10.0.0.13
+
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.2-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.1-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.6-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.4-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 2, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.3-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 5, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:04"}
+{"outPort": 3, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 4, "Dpid": "00:00:00:00:00:00:00:05"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.7-10.0.0.13-0f", "inPort": 5, "Dpid": "00:00:00:00:00:00:00:03"}
+{"outPort": 1, "datetime": "Fri Feb  6 10:49:04 2015", "name": "Q10.0.0.5-10.0.0.13-0f", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
+add
+Trying to create a circuit from host 10.0.0.13 to host 10.0.0.8...
+/home/mininet/floodlight-qos-beta-master/apps/qos
+Necessary tools confirmed.. circuitpusher.py , qosmanager2.py
+create circuit!!!
+./circuitpusher.py --controller=10.0.2.15:8080 --type ip --src 10.0.0.13 --dst 10.0.0.8 --add --name Q10.0.0.8-10.0.0.13-1b
+Process 9362 started to create circuit
+Opening circuits.json in /home/mininet/floodlight-qos-beta-master/apps/qos
+Creating a QoSPath from host 10.0.0.13 to host 10.0.0.8...
+line : s1 00:00:00:00:00:00:00:01
+
+line : s2 00:00:00:00:00:00:00:02
+
+line : s3 00:00:00:00:00:00:00:03
+
+line : s4 00:00:00:00:00:00:00:04
+
+line : s5 00:00:00:00:00:00:00:05
+
+line : server1 10.0.0.9 1 1
+
+found server
+server1 10.0.0.9 1
+line : server2 10.0.0.10 2 1
+
+found server
+server2 10.0.0.10 2
+line : server3 10.0.0.11 3 1
+
+found server
+server3 10.0.0.11 3
+line : server4 10.0.0.12 4 1
+
+found server
+server4 10.0.0.12 4
+line : server5 10.0.0.13 5 1
+
+found server
+server5 10.0.0.13 5
+line : server6 10.0.0.14 6 1
+
+found server
+server6 10.0.0.14 6
+line : server7 10.0.0.15 7 1
+
+found server
+server7 10.0.0.15 7
+line : server8 10.0.0.16 8 1
+
+found server
+server8 10.0.0.16 8
+line : 
+
+num of argv : 6
+['./select_queue.py', '10.0.2.15', '10.0.0.8', '10.0.0.13', 'add', 'Q10.0.0.8-10.0.0.13-1']

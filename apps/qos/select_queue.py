@@ -38,14 +38,16 @@ while len(item) > 0:
 print "num of argv : " + str(len(sys.argv))
 print sys.argv
 
+print server_nodes
+
 if len(sys.argv) > 1:
     controller_ip = sys.argv[1]
     host_ip = sys.argv[2]
     server_ip = sys.argv[3]
     mode = sys.argv[4]
     name = sys.argv[5]
-    name_fw = name + "-f"
-    name_bw = name + "-b"
+    name_fw = name + "f"
+    name_bw = name + "b"
     if mode == 'add':
         server_info = server_nodes[server_ip]
         queue_id = server_info['queue']
