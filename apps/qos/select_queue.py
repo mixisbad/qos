@@ -7,6 +7,7 @@ import os
 server_nodes = {}
 
 topo_detail = open('topology_detail.txt','r')
+
 line = topo_detail.readline()
 item = line.split()
 
@@ -66,4 +67,7 @@ if len(sys.argv) > 1:
         os.system('./qospath2.py -d -N "%s" -c %s' % (name_fw,controller_ip))
         #print './qospath2.py -d -N "%s" -c %s' % (name,controller_ip)
         os.system('./qospath2.py -d -N "%s" -c %s' % (name_bw,controller_ip))
-
+    flag_set_queue = open('flag_set_queue.txt','w')
+    #flag_set_queue = io.open('flag_set_queue','w',encoding='utf-8')
+    flag_set_queue.write( "T" )
+    flag_set_queue.close()

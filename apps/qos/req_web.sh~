@@ -1,0 +1,6 @@
+#!/bin/bash
+
+STARTTIME=$(date +%s)
+wget $1"/file1000k.jpg"
+ENDTIME=$(date +%s)
+echo $((ENDTIME - STARTTIME))" : "$1" : 1000k.jpg">>log.out

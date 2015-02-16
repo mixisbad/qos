@@ -62,7 +62,8 @@ def build_port_name():
         for each_port in ports:
             port_detail[each_port["portNumber"]] = each_port["name"]
         name_index[dpid] = port_detail
-        
+
+    #print name_index
 
 def measure_bandwidth():
     global traffic_data
@@ -76,7 +77,7 @@ def measure_bandwidth():
     
     line = page.read().decode("utf-8")
 
-    f_ptr = io.open(traffic_file_name,'w',encoding='utf-8')
+    
 
     new_traffic_data = {}
     
@@ -234,11 +235,22 @@ def measure_bandwidth():
                     if total_momentum > 0:
                         # 0 is an index for min bandwidth
                         queue_property[switch_index][i][j][0] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
+                        #try set for max
+                        #queue_property[switch_index][i][j][1] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
+                        #if queue_property[switch_index][i][j][1] == 0.0:
+                        #    queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
                     else:
                         queue_property[switch_index][i][j][0] = 0.0
+                        #try set for max
+                        #queue_property[switch_index][i][j][1] = speed[switch_index][i]
+
                     queue_property[switch_index][i][j][1] = speed[switch_index][i]
+                    #try set for min
+                    #queue_property[switch_index][i][j][0] = queue_property[switch_index][i][j][1]
                         
+                    #try set both bound
                     #need to check for update the max bandwidth for the rule 
+                    
                     for each_rule in rule_update[i][j]:
                         if each_rule in rule_max_bw:
                             if rule_max_bw[each_rule] < queue_property[switch_index][i][j][0]:
@@ -248,7 +260,8 @@ def measure_bandwidth():
                             
 
                     # 1 is an index for max bandwidth
-                    queue_property[switch_index][i][j][1] = speed[switch_index][i]
+                    #queue_property[switch_index][i][j][1] = speed[switch_index][i]
+                    #try set for both bound
 
                     #print "queue : " + str(j) + " min : " + str(queue_property[switch_index][i][j][0]) + " max : " + str(queue_property[switch_index][i][j][1])
             #endloop each port in switch
@@ -256,14 +269,21 @@ def measure_bandwidth():
     
             #print tmp_count_flow
             #print "after count"
+            existing_rules[switch_index] = rule_update
         #endif known switch
-        existing_rules[switch_index] = rule_update
+        
     #endloop each switch                            
 
+    print queue_property
+
     #need to determine max bandwidth by the max ratio found in the path
-    for switch_row in range( len(queue_property) ):
-        for port_row in range( len( queue_property[switch_row] ) ):
-            for queue_row in range( len( queue_property[switch_row][port_row]) ):
+    #for switch_row in range( len(queue_property) ):
+    #    for port_row in range( len( queue_property[switch_row] ) ):
+    #        for queue_row in range( len( queue_property[switch_row][port_row]) ):
+
+    for switch_row in range( len(existing_rules) ):
+        for port_row in range( len( existing_rules[switch_row] ) ):
+            for queue_row in range( len( existing_rules[switch_row][port_row]) ):
                 #get a list that contain every rule name on that queue( in the focusing port )
                 rule_port_dict = existing_rules[switch_row][port_row][queue_row]
                 
@@ -282,6 +302,8 @@ def measure_bandwidth():
     #print rule_max_bw
     #print "---------------------------------"
     #print existing_rules
+
+    f_ptr = io.open(traffic_file_name,'w',encoding='utf-8')
 
     #previously write number of switches and assume they all have less/equal than maxport
     f_ptr.write( unicode(str(len(switches)) + "\n"))
@@ -318,37 +340,42 @@ def get_exists_bandwidth_on_link(switch,outport,server):
 
 def allocate_queue():
     #begin loop to look all switch
+    #print "allocate queue get called here"
     for index in range(0, len(queue_property) ):
         focus_dpid = switches_dpid[switch_nodes[index]]
-        print switch_nodes[index] + " : " + focus_dpid
+        #print switch_nodes[index] + " : " + focus_dpid
         #begin loop to look all port
         for port_num in range(0, len(queue_property[index]) ):
-            
-            port = name_index[focus_dpid][port_num+1]
-            qosmax = speed[index][port_num]
+            if focus_dpid in name_index:
+                #print "allocate queue get called here"
+                port = name_index[focus_dpid][port_num+1]
+                qosmax = speed[index][port_num]
 
-            queuecmd = "sudo ovs-vsctl -- set port %s qos=@defaultqos -- " % port
-            queuecmd = queuecmd + "--id=@defaultqos create qos type=linux-htb other-config:max-rate=%s " % qosmax
-            for i in range(0, len(queue_property[index][port_num])+1):
-                if i == 0:
-                    queuecmd = queuecmd + "queues=0=@q0"
-                else:
-                    queuecmd = queuecmd + "," + str(i) + "=@q" + str(i)
+                queuecmd = "sudo ovs-vsctl -- set port %s qos=@qosport%s -- " % ( port , port )
+                queuecmd = queuecmd + "--id=@qosport%s create qos type=linux-htb other-config:max-rate=%d " % ( port , int(qosmax) )
+                for i in range(0, len(queue_property[index][port_num])+1):
+                    if i == 0:
+                        queuecmd = queuecmd + "queues=0=@q0"
+                    else:
+                        queuecmd = queuecmd + "," + str(i) + "=@q" + str(i)
 
-            queuecmd = queuecmd + " -- "
+                queuecmd = queuecmd + " -- "
                     
-            for i in range(0, len(queue_property[index][port_num])+1):
-                if i == 0:
-                    queuecmd = queuecmd +     "--id=@q0 create queue other-config:max-rate=%s other-config:min-rate=%s " % ("0.0" , str(qosmax) )
-                else:
-                    queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), str(queue_property[index][port_num][i-1][1]), str(queue_property[index][port_num][i-1][0]) )
+                for i in range(0, len(queue_property[index][port_num])+1):
+                    if i == 0:
+                        queuecmd = queuecmd +     "--id=@q0 create queue other-config:max-rate=%d other-config:min-rate=%s " % ( int(qosmax) , "0" )
+                    else:
+                        #queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), str(queue_property[index][port_num][i-1][1]), str(queue_property[index][port_num][i-1][0]) )
+                        queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), int(queue_property[index][port_num][i-1][0]), int(queue_property[index][port_num][i-1][0]) )
+
+
 
             
-            #print "result : \n\n "
-            #print queuecmd
-            #print os.popen(queuecmd).read()
-            os.popen(queuecmd)
-            #print "end result : \n\n "
+                #print "result : \n\n "
+                #print queuecmd
+                #print os.popen(queuecmd).read()
+                os.popen(queuecmd)
+                #print "end result : \n\n "
             
 '''
 def allocate_queue_wrong():
@@ -456,6 +483,8 @@ def reset_bandwidthout():
             for k in range ( 1, len(server_nodes)+1):
                 bw_row[j][k] = 0
 
+    print bandwidthout
+
 def display_bandwidthout():
     global bandwidthout
     #initial banwidthouy
@@ -501,7 +530,7 @@ if __name__ == '__main__':
             server[item[1]]['name'] = item[0]
             server[item[1]]['id'] = len(server_nodes)
             server[item[1]]['queue'] = int(item[2])
-            server_priority.append( int(item[3]) )
+            server_priority.append( float(item[3]) )
             #server[item[1]]['priority'] = int(item[2])
             server_nodes.append(item[0])
             
@@ -549,7 +578,7 @@ if __name__ == '__main__':
                 row.append( nodes.index(item_info[0]) )
             else:
                 row.append( -1 )
-            speed_row.append(float(item_info[1]))
+            speed_row.append(float(item_info[1])*1000000.0)
             
         switch_index = nodes.index( switches[item[0]] )
         adjacent[switch_index] = row
@@ -568,6 +597,7 @@ if __name__ == '__main__':
         line = topo_detail.readline()
         item = line.split()
 
+    topo_detail.close()
     #print adjacent
 
     
@@ -581,7 +611,9 @@ if __name__ == '__main__':
     allocate_bandwidthout()
 
     #begin the loop
+    
     while True :
+    #for t in range(1):
         reset_bandwidthout()
 
         #display_bandwidthout()
@@ -592,7 +624,24 @@ if __name__ == '__main__':
         #it already has a map so it just has to get bandwidth information from polling
         #assume all the bandwidth available in every link is 3000000 for now
         #need to merge this code and polling.py together
+        display_bandwidthout()
+
+        flag_set_queue = open('flag_set_queue.txt','r')
+        line = flag_set_queue.readline()
+        if line == "T":
             
-        allocate_queue()
+            flag_set_queue.close()
+            flag_set_queue = open('flag_set_queue.txt','w')
+            flag_set_queue.write('F')
+            flag_set_queue.close()
+
+            allocate_queue()
+
+            
+        else:
+            flag_set_queue.close()
+
+        #allocate_queue()
+            
     
     #end the loop
