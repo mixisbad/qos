@@ -47,27 +47,29 @@ if len(sys.argv) > 1:
     server_ip = sys.argv[3]
     mode = sys.argv[4]
     name = sys.argv[5]
-    name_fw = name + "f"
-    name_bw = name + "b"
     if mode == 'add':
         server_info = server_nodes[server_ip]
         queue_id = server_info['queue']
 
-        #add route from src to dst
-        os.system('./qospath2.py -a -N "%s" -c %s -S %s -D %s -J ' % (name_fw,controller_ip,host_ip,server_ip)  + "'" + '{"eth-type":"0x0800","protocol":"6","queue":"%s"}' % queue_id + "'")
-        #add route from dst back to src
-        os.system('./qospath2.py -a -N "%s" -c %s -S %s -D %s -J ' % (name_bw,controller_ip,server_ip,host_ip)  + "'" + '{"eth-type":"0x0800","protocol":"6","queue":"%s"}' % queue_id + "'")
-
-        #print './qospath2.py -a -N "%s" -c %s -S %s -D %s -J ' % (name,controller_ip,host_ip,server_ip)  + "'" + '{"eth-type":"0x0800","protocol":"6","queue":"%s"}' % queue_id + "'"
-
-        #print './qospath2.py -a -N "%s" -c %s -S %s -D %s -J ' % (name,controller_ip,server_ip,host_ip)  + "'" + '{"eth-type":"0x0800","protocol":"6","queue":"%s"}' % queue_id + "'"
+        #add route from src to dst the circuit pusher will always create both forward/backward path
+        os.system('./qospath2.py -a -N "%s" -c %s -S %s -D %s -J ' % (name,controller_ip,host_ip,server_ip)  + "'" + '{"eth-type":"0x0800","protocol":"6","queue":"%s"}' % queue_id + "'")
 
     elif mode == 'del':
-        #print './qospath2.py -d -N "%s" -c %s' % (name,controller_ip)
-        os.system('./qospath2.py -d -N "%s" -c %s' % (name_fw,controller_ip))
-        #print './qospath2.py -d -N "%s" -c %s' % (name,controller_ip)
-        os.system('./qospath2.py -d -N "%s" -c %s' % (name_bw,controller_ip))
-    flag_set_queue = open('flag_set_queue.txt','w')
+
+        os.system('./qospath2.py -d -N "%s" -c %s' % (name,controller_ip))
+
+    
+    #flag_set_queue = open('flag_set_queue.txt','w')
     #flag_set_queue = io.open('flag_set_queue','w',encoding='utf-8')
-    flag_set_queue.write( "T" )
-    flag_set_queue.close()
+    #flag_set_queue.write( "T" )
+    #flag_set_queue.close()
+
+    tmp_flag = open('flag_set_queue.txt.tmp2','w')
+    tmp_flag.write('T')
+    tmp_flag.flush()
+    os.fsync(tmp_flag.fileno())
+    tmp_flag.close()
+
+    os.rename('flag_set_queue.txt', 'flag_set_queue.txt.bak2')
+    os.rename('flag_set_queue.txt.tmp2', 'flag_set_queue.txt')
+    os.remove('flag_set_queue.txt.bak2')

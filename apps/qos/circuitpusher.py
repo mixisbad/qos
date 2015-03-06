@@ -33,6 +33,10 @@ import json
 import argparse
 import io
 import time
+from datetime import datetime
+import urllib
+import urllib2
+import mysql.connector
 
 # parse circuit options.  Currently supports add and delete actions.
 # Syntax:
@@ -67,40 +71,73 @@ print args
 controllerRestIp = args.controllerRestIp
 
 # first check if a local file exists, which needs to be updated after add/delete
-if os.path.exists('./circuits.json'):
-    circuitDb = open('./circuits.json','r')
-    lines = circuitDb.readlines()
-    circuitDb.close()
+#if os.path.exists('./circuits.json'):
+#    circuitDb = open('./circuits.json','r')
+#    lines = circuitDb.readlines()
+#    circuitDb.close()
+#else:
+#    lines={}
+
+flag_exists_circuit = False;
+
+cnx = mysql.connector.connect(user='thesis', password='password',
+                              host='10.0.2.15',
+                              database='thesis')
+
+cursor = cnx.cursor()
+
+query = "SELECT name FROM circuit WHERE name = '%s' " % args.circuitName
+
+cursor.execute(query)
+row = cursor.fetchone()
+
+if row is not None:
+    flag_exists_circuit = True
 else:
-    lines={}
+    flag_exists_circuit = False
+
+cnx.close()
 
 if args.action=='add':
 
-    circuitDb = open('./circuits.json','a')
+   
+
+    #circuitDb = open('./circuits.json','a')
     
-    for line in lines:
-        data = json.loads(line)
-        if data['name']==(args.circuitName):
-            print "Circuit %s exists already. Use new name to create." % args.circuitName
-            sys.exit()
-        else:
-            circuitExists = False
+    if flag_exists_circuit:
+        print "Circuit %s exists already. Use new name to create." % args.circuitName
+        sys.exit()
+    #else:
+    #    circuitExists = False
+
+    
     
     # retrieve source and destination device attachment points
     # using DeviceManager rest API 
     
-    command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.srcAddress)
-    print command+"\n"
-    result = os.popen(command).read()
+    #command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.srcAddress)
+    myurl = "http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.srcAddress)
+    #print command+"\n"
+    #print myurl
+
+    data = urllib2.urlopen(myurl)
+    result = data.read()
+    data.close()
+    #result = os.popen(command).read()
     parsedResult = json.loads(result)
 
     sourceSwitch = parsedResult[0]['attachmentPoint'][0]['switchDPID']
     sourcePort = parsedResult[0]['attachmentPoint'][0]['port']
     
-    command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.dstAddress)
-    result = os.popen(command).read()
+    #command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.dstAddress)
+    myurl = "http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.dstAddress)
+
+    data = urllib2.urlopen(myurl)
+    result = data.read()
+    data.close()
+    #result = os.popen(command).read()
     parsedResult = json.loads(result)
-    print command+"\n"
+    #print command+"\n"
     destSwitch = parsedResult[0]['attachmentPoint'][0]['switchDPID']
     destPort = parsedResult[0]['attachmentPoint'][0]['port']
     
@@ -111,13 +148,22 @@ if args.action=='add':
     # retrieving route from source to destination
     # using Routing rest API
     
-    command = "curl -s http://%s/wm/topology/route/%s/%s/%s/%s/json" % (controllerRestIp, sourceSwitch, sourcePort, destSwitch, destPort)
+    #command = "curl -s http://%s/wm/topology/route/%s/%s/%s/%s/json" % (controllerRestIp, sourceSwitch, sourcePort, destSwitch, destPort)
+
+    myurl = "http://%s/wm/topology/route/%s/%s/%s/%s/json" % (controllerRestIp, sourceSwitch, sourcePort, destSwitch, destPort)
     
-    result = os.popen(command).read()
+    data = urllib2.urlopen(myurl)
+    result = data.read()
+    data.close()
+    #result = os.popen(command).read()
     parsedResult = json.loads(result)
 
-    print command+"\n"
-    print result+"\n"
+    #print myurl+"\n"
+    #print result+"\n"
+
+    cnx = mysql.connector.connect(user='thesis', password='password',host='10.0.2.15',database='thesis')
+
+    cursor = cnx.cursor()
 
     for i in range(len(parsedResult)):
         if i % 2 == 0:
@@ -130,86 +176,70 @@ if args.action=='add':
             ap2Port = parsedResult[i]['port']
             print ap2Dpid, ap2Port
             
-            # send one flow mod per pair of APs in route
-            # using StaticFlowPusher rest API
 
-            # IMPORTANT NOTE: current Floodlight StaticflowEntryPusher
-            # assumes all flow entries to have unique name across all switches
-            # this will most possibly be relaxed later, but for now we
-            # encode each flow entry's name with both switch dpid, user
-            # specified name, and flow type (f: forward, r: reverse, farp/rarp: arp)
-
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".f", args.srcAddress, args.dstAddress, "0x800", ap1Port, ap2Port, controllerRestIp)
-            #result = os.popen(command).read()
-            print command
-
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".farp", "0x806", ap1Port, ap2Port, controllerRestIp)
-           # result = os.popen(command).read()
-            print command
-
-
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".r", args.dstAddress, args.srcAddress, "0x800", ap2Port, ap1Port, controllerRestIp)
-           #result = os.popen(command).read()
-            print command
-
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".rarp", "0x806", ap2Port, ap1Port, controllerRestIp)
-            #result = os.popen(command).read()
-            print command
-            
+            # edit by pattanapoom change to store in DB
             # store created circuit attributes in local ./circuits.json
-            datetime = time.asctime()
-            circuitParams = {'name':args.circuitName, 'Dpid':ap1Dpid, 'inPort':ap1Port, 'outPort':ap2Port, 'datetime':datetime}
-            str = json.dumps(circuitParams)
-            circuitDb.write(str+"\n")
+            #datetime = time.asctime()
+            #circuitParams = {'name':args.circuitName, 'Dpid':ap1Dpid, 'inPort':ap1Port, 'outPort':ap2Port, 'datetime':datetime}
+            #str_json = json.dumps(circuitParams)
+            #circuitDb.write(str_json+"\n")
 
-        # confirm successful circuit creation
-        # using controller rest API
             
-        command="curl -s http://%s/wm/core/switch/all/flow/json| python -mjson.tool" % (controllerRestIp)
-        #result = os.popen(command).read()
-        print command + "\n" + result
+            query = "INSERT INTO circuit values('%s', '%s', %s, %s, '%s')" % (args.circuitName, ap1Dpid, ap1Port, ap2Port, datetime.now())
+            #print '******************************************'
+            #print query
+            #print '******************************************'
+            cursor.execute(query)
+
+            #end edit by pattanapoom store results in DB
+
+
+
+        
+            
+        
+    cnx.commit()
+    cnx.close()
+
+    # confirm successful circuit creation
+    # using controller rest API
+    #command="curl -s http://%s/wm/core/switch/all/flow/json| python -mjson.tool" % (controllerRestIp)
+    #result = os.popen(command).read()
+    #print command + "\n" + result
+
+    #circuitDb.close()
 
 elif args.action=='delete':
     
-    circuitDb = open('./circuits.json','w')
+    #circuitDb = open('./circuits.json','w')
 
     # removing previously created flow from switches
     # using StaticFlowPusher rest API       
     # currently, circuitpusher records created circuits in local file ./circuits.db 
     # with circuit name and list of switches                                  
 
-    circuitExists = False
+    #circuitExists = False
 
-    for line in lines:
-        data = json.loads(line)
-        if data['name']==(args.circuitName):
-            circuitExists = True
+    #for line in lines:
+    #    data = json.loads(line)
+    #    if data['name']==(args.circuitName):
+    #        circuitExists = True
+    #    else:
+    #        circuitDb.write(line)
 
-            sw = data['Dpid']
-            print data, sw
+    #circuitDb.close()
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json" % (sw+"."+args.circuitName+".f", sw, controllerRestIp)
-            #result = os.popen(command).read()
-            print command#, result
+    if flag_exists_circuit:
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json" % (sw+"."+args.circuitName+".farp", sw, controllerRestIp)
-            #result = os.popen(command).read()
-            print command#, result
+        cnx = mysql.connector.connect(user='thesis', password='password',host='10.0.2.15',database='thesis')
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json" % (sw+"."+args.circuitName+".r", sw, controllerRestIp)
-            #result = os.popen(command).read()
-            print command#, result
+        cursor = cnx.cursor()
+        query = "DELETE FROM circuit where name = '%s'" 
+        cursor.execute(query,(args.circuitName))
+        cnx.commit()
+        cnx.close()
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json" % (sw+"."+args.circuitName+".rarp", sw, controllerRestIp)
-            #result = os.popen(command).read()
-            print command#, result            
-            
-        else:
-            circuitDb.write(line)
-
-    circuitDb.close()
-
-    if not circuitExists:
+    else:
         print "specified circuit does not exist"
-        sys.exit()
+        #sys.exit()
 

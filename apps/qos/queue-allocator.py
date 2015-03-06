@@ -3,10 +3,13 @@
 
 import sys
 import io
+import tempfile
 import os
 import json
 import Queue
 import urllib
+import urllib2
+import contextlib
 
 nodes = []
 server_nodes = []
@@ -29,6 +32,8 @@ max_bandwidth = 10
 
 #linkbandwidth = 10.0
 traffic_file_name = "/home/mininet/floodlight-qos-beta-master/traffic.txt"
+traffic_tmp_file_name = "/home/mininet/floodlight-qos-beta-master/traffic.txt.tmp"
+traffic_bak_file_name = "/home/mininet/floodlight-qos-beta-master/traffic.txt.bak"
 switchnum = 0
 traffic_data = {}
 name_index = {}
@@ -48,8 +53,12 @@ flow_map = {}
 def build_port_name():
     global name_index
 
-    page = urllib.urlopen('http://localhost:8080/wm/core/controller/switches/json')
-    line = page.read().decode("utf-8")
+    #page = urllib.urlopen('http://localhost:8080/wm/core/controller/switches/json')
+
+    with contextlib.closing(urllib2.urlopen('http://localhost:8080/wm/core/controller/switches/json')) as page:
+        line = page.read().decode("utf-8")
+
+    #line = page.read().decode("utf-8")
 
     collections = json.loads(line)
 
@@ -73,257 +82,269 @@ def measure_bandwidth():
     global bandwidthout
     global switchnum
 
-    page = urllib.urlopen('http://localhost:8080/wm/core/switch/all/flow/json')
-    
-    line = page.read().decode("utf-8")
+    #page = urllib.urlopen('http://localhost:8080/wm/core/switch/all/flow/json')
 
     
 
-    new_traffic_data = {}
+    with contextlib.closing(urllib2.urlopen('http://localhost:8080/wm/core/switch/all/flow/json')) as page:
+        line = page.read().decode("utf-8")
+
+        #line = page.read().decode("utf-8")
+
+        new_traffic_data = {}
     
     
 
-    #create tmp count flow (has row equal to number of switch)
-    tmp_count_flow = [[] for i in range( len(adjacent))]
-    for i in range( len(tmp_count_flow)):
-        #each switch has column equal to number of its port
-        tmp_count_flow[i] = [[] for j in range( len(adjacent[i]) )]
-        #each port has number of counter equal to number of queue (number of server)
-        for j in range ( len( tmp_count_flow[i]) ):
-            tmp_count_flow[i][j] = [0 for k in range( len(server_nodes) )]
+        #create tmp count flow (has row equal to number of switch)
+        tmp_count_flow = [[] for i in range( len(adjacent))]
+        for i in range( len(tmp_count_flow)):
+            #each switch has column equal to number of its port
+            tmp_count_flow[i] = [[] for j in range( len(adjacent[i]) )]
+            #each port has number of counter equal to number of queue (number of server)
+            for j in range ( len( tmp_count_flow[i]) ):
+                tmp_count_flow[i][j] = [0 for k in range( len(server_nodes) )]
 
-    rule_max_bw = {}
-    existing_rules = [[] for i in range( len(switches) )]
+        rule_max_bw = {}
+        existing_rules = [[] for i in range( len(switches) )]
 
-    switch_dicts = json.loads(line)
-    for switch_id in switch_dicts:
-        if switch_id in name_index:
+        switch_dicts = json.loads(line)
+        for switch_id in switch_dicts:
+            if switch_id in name_index:
 
-            switch_index = nodes.index(switches[switch_id])
+                switch_index = nodes.index(switches[switch_id])
 
-            rule_update = [[] for i in range(len(adjacent[switch_index]))]
-            for i in range( len(rule_update) ):
-                rule_update[i] = [[] for j in range( len(server_nodes) )]
-            #print "sw : "
-            #print switch_id
-            #print tmp_count_flow
-            #print server
-            #print server_nodes
-            #print nodes
-
-            for flow in switch_dicts[switch_id]:
-                match = flow["match"]
-                key_match = match["networkDestination"]+match["networkSource"]
-                actions = flow["actions"]
+                rule_update = [[] for i in range(len(adjacent[switch_index]))]
+                for i in range( len(rule_update) ):
+                    rule_update[i] = [[] for j in range( len(server_nodes) )]
 
 
-                for action in actions:
-                    #in case it want to connect with controller, using NAT to connect outside topology
-                    if int(action["port"]) > len(bandwidthout[switch_index]):
-                        continue
+                for flow in switch_dicts[switch_id]:
+                    match = flow["match"]
+                    key_match = match["networkDestination"]+match["networkSource"]
+                    actions = flow["actions"]
 
-                    if action["type"] == "OUTPUT" or action["type"] == "OPAQUE_ENQUEUE":
-                        total_duration = 0
-                        total_byte = 0
-                        found = False
-                        if (switch_id,action["port"]) in traffic_data:
-                            temp_traffic = traffic_data[(switch_id,action["port"])]
-                            if key_match in temp_traffic:
-                                temp_flow = temp_traffic[key_match]
-                                old_duration = temp_flow["duration"]
-                                old_bytecount = temp_flow["byteCount"]
-                                total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)-old_duration
-                                if total_duration >= 0:
-                                    found = True
-                                    total_byte = flow["byteCount"]-old_bytecount                            
-                        if not found:
-                            total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
-                            total_byte = flow["byteCount"]
 
-                        buildkey = (switch_id,action["port"])
+                    for action in actions:
+                        #in case it want to connect with controller, using NAT to connect outside topology
+                        if int(action["port"]) > len(bandwidthout[switch_index]):
+                            continue
+
+                        if action["type"] == "OUTPUT" or action["type"] == "OPAQUE_ENQUEUE":
+                            total_duration = 0
+                            total_byte = 0
+                            found = False
+                            if (switch_id,action["port"]) in traffic_data:
+                                temp_traffic = traffic_data[(switch_id,action["port"])]
+                                if key_match in temp_traffic:
+                                    temp_flow = temp_traffic[key_match]
+                                    old_duration = temp_flow["duration"]
+                                    old_bytecount = temp_flow["byteCount"]
+                                    total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)-old_duration                                    
+                                    if total_duration >= 0:
+                                        found = True
+                                        total_byte = flow["byteCount"]-old_bytecount                            
+                            if not found:
+                                total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
+                                total_byte = flow["byteCount"]
+
+                            buildkey = (switch_id,action["port"])
                         
-                        #add information into globall traffic data for next iteration 
-                        if buildkey not in new_traffic_data:
-                            new_traffic_data[buildkey] = {}
+                            #add information into globall traffic data for next iteration 
+                            if buildkey not in new_traffic_data:
+                                new_traffic_data[buildkey] = {}
 
-                        #instead of using the whole match use only src,dst will be fine for this testing
-                        new_traffic_data[buildkey][key_match] = {}
-                        new_traffic_data[buildkey][key_match]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
-                        new_traffic_data[buildkey][key_match]["byteCount"] = flow["byteCount"]
+                            #instead of using the whole match use only src,dst will be fine for this testing
+                            new_traffic_data[buildkey][key_match] = {}
+                            new_traffic_data[buildkey][key_match]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
+                            new_traffic_data[buildkey][key_match]["byteCount"] = flow["byteCount"]
                         
-                        if total_duration > 0:
-                            bw = ((total_byte*8)/(total_duration))/1000000
+                            if total_duration > 0:
+                                bw = ((total_byte*8)/(total_duration))/1000000
+                            else:
+                                bw = 0
+                            #print "raw sw : " + switch_id
+                            #print "sw id : " + str(switch_index)
+                            #print "raw port : " + str(action["port"])
+                            #print "port : " + str(int(action["port"])-1)
+                            #print bandwidthout[switch_index]
+                            bandwidthout[switch_index][int(action["port"])-1][0] = bandwidthout[switch_index][int(action["port"])-1][0] - bw
+
+                            destination = match["networkDestination"]
+                            source = match["networkSource"]
+                            #print "destination : " + destination 
+                            if destination in server:
+                                #server_name = server[destination]['name']
+                                #server_index = server_nodes.index(server_name)+1
+
+
+                                server_index = server[destination]['id']
+                                port_int = int(action["port"])-1
+                                #add 1 to server index because [0] is reserved for available
+                                bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
+                                #print tmp_count_flow[switch_index]
+
+                                tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
+
+                                #print adjacent
+                                #check if it is the src node
+                                server_name = server[destination]['name']
+                                server_nodes_index = nodes.index(server_name)
+                            
+                                #generate rules name to mark for update in its port after finish all flow in a switch
+                                rule_name = source+"-"+destination
+                                rule_update[port_int][server_index].append(rule_name)
+                            
+                            elif source in server:
+                                server_index = server[source]['id']
+                                port_int = int(action["port"])-1
+
+                                bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
+                                #print tmp_count_flow[switch_index]
+                            
+                                tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
+                                server_name = server[source]['name']
+                                server_nodes_index = nodes.index(server_name)
+                            
+                                #print "port : " + str(port_int)
+                                #generate rules name to mark for update in its port after finish all flow in a switch
+                                rule_name = source+"-"+destination
+                                #print "rule name : " + rule_name
+                                rule_update[port_int][server_index].append(rule_name)
+                        #endif action = output / opaque queue
+                    #endloop each action
+                #endloop each flow
+
+
+
+                #print rule_update
+                #begin count and show associate rule with this port
+                #print "sw : " + str(switch_index+1)
+
+                #loop i for all port in switch
+                for i in range( len(adjacent[switch_index]) ):
+                    #print "port : " + str( i+1 )
+                    tmp_cal = [0 for j in range( len(tmp_count_flow[switch_index][i]) )]
+                    total_momentum = 0
+
+                    #loop j for all queue (#server) in a port
+                    for j in range( len(tmp_count_flow[switch_index][i]) ):
+                        flow = tmp_count_flow[switch_index][i][j]
+                        #print "count : " + str(flow)
+                        momentum = flow*server_priority[j]
+                        tmp_cal[j] = momentum
+                        #print "momentum : " + str(momentum)
+                        total_momentum = total_momentum + momentum
+
+                    #print "total momentum : " + str(total_momentum)
+
+                    #loop j for all queue in a port
+                    for j in range( len(tmp_cal) ):
+                        if total_momentum > 0:
+                            # 0 is an index for min bandwidth
+                            queue_property[switch_index][i][j][0] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
+                            #try set for max
+                            #queue_property[switch_index][i][j][1] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
+                            #if queue_property[switch_index][i][j][1] == 0.0:
+                            #    queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
                         else:
-                            bw = 0
-                        #print "raw sw : " + switch_id
-                        #print "sw id : " + str(switch_index)
-                        #print "raw port : " + str(action["port"])
-                        #print "port : " + str(int(action["port"])-1)
-                        #print bandwidthout[switch_index]
-                        bandwidthout[switch_index][int(action["port"])-1][0] = bandwidthout[switch_index][int(action["port"])-1][0] - bw
+                            queue_property[switch_index][i][j][0] = 0.0
+                            #try set for max
+                            #queue_property[switch_index][i][j][1] = speed[switch_index][i]
 
-                        destination = match["networkDestination"]
-                        source = match["networkSource"]
-                        #print "destination : " + destination 
-                        if destination in server:
-                            #server_name = server[destination]['name']
-                            #server_index = server_nodes.index(server_name)+1
-
-
-                            server_index = server[destination]['id']
-                            port_int = int(action["port"])-1
-                            #add 1 to server index because [0] is reserved for available
-                            bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
-                            #print tmp_count_flow[switch_index]
-
-                            tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
-
-                            #print adjacent
-                            #check if it is the src node
-                            server_name = server[destination]['name']
-                            server_nodes_index = nodes.index(server_name)
-                            
-                            #generate rules name to mark for update in its port after finish all flow in a switch
-                            rule_name = source+"-"+destination
-                            rule_update[port_int][server_index].append(rule_name)
-                            
-                        elif source in server:
-                            server_index = server[source]['id']
-                            port_int = int(action["port"])-1
-
-                            bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
-                            #print tmp_count_flow[switch_index]
-                            
-                            tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
-                            server_name = server[source]['name']
-                            server_nodes_index = nodes.index(server_name)
-                            
-                            #print "port : " + str(port_int)
-                            #generate rules name to mark for update in its port after finish all flow in a switch
-                            rule_name = source+"-"+destination
-                            #print "rule name : " + rule_name
-                            rule_update[port_int][server_index].append(rule_name)
-                    #endif action = output / opaque queue
-                #endloop each action
-            #endloop each flow
-
-
-
-            #print rule_update
-            #begin count and show associate rule with this port
-            #print "sw : " + str(switch_index+1)
-
-            #loop i for all port in switch
-            for i in range( len(adjacent[switch_index]) ):
-                #print "port : " + str( i+1 )
-                tmp_cal = [0 for j in range( len(tmp_count_flow[switch_index][i]) )]
-                total_momentum = 0
-
-                #loop j for all queue (#server) in a port
-                for j in range( len(tmp_count_flow[switch_index][i]) ):
-                    flow = tmp_count_flow[switch_index][i][j]
-                    #print "count : " + str(flow)
-                    momentum = flow*server_priority[j]
-                    tmp_cal[j] = momentum
-                    #print "momentum : " + str(momentum)
-                    total_momentum = total_momentum + momentum
-
-                #print "total momentum : " + str(total_momentum)
-
-                #loop j for all queue in a port
-                for j in range( len(tmp_cal) ):
-                    if total_momentum > 0:
-                        # 0 is an index for min bandwidth
-                        queue_property[switch_index][i][j][0] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
-                        #try set for max
-                        #queue_property[switch_index][i][j][1] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
-                        #if queue_property[switch_index][i][j][1] == 0.0:
-                        #    queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
-                    else:
-                        queue_property[switch_index][i][j][0] = 0.0
-                        #try set for max
-                        #queue_property[switch_index][i][j][1] = speed[switch_index][i]
-
-                    queue_property[switch_index][i][j][1] = speed[switch_index][i]
-                    #try set for min
-                    #queue_property[switch_index][i][j][0] = queue_property[switch_index][i][j][1]
+                        queue_property[switch_index][i][j][1] = speed[switch_index][i]
+                        #try set for min
+                        #queue_property[switch_index][i][j][0] = queue_property[switch_index][i][j][1]
                         
-                    #try set both bound
-                    #need to check for update the max bandwidth for the rule 
+                        #try set both bound
+                        #need to check for update the max bandwidth for the rule 
                     
-                    for each_rule in rule_update[i][j]:
-                        if each_rule in rule_max_bw:
-                            if rule_max_bw[each_rule] < queue_property[switch_index][i][j][0]:
+                        for each_rule in rule_update[i][j]:
+                            if each_rule in rule_max_bw:
+                                if rule_max_bw[each_rule] < queue_property[switch_index][i][j][0]:
+                                    rule_max_bw[each_rule] = queue_property[switch_index][i][j][0]
+                            else:
                                 rule_max_bw[each_rule] = queue_property[switch_index][i][j][0]
-                        else:
-                            rule_max_bw[each_rule] = queue_property[switch_index][i][j][0]
                             
 
-                    # 1 is an index for max bandwidth
-                    #queue_property[switch_index][i][j][1] = speed[switch_index][i]
-                    #try set for both bound
+                        # 1 is an index for max bandwidth
+                        #queue_property[switch_index][i][j][1] = speed[switch_index][i]
+                        #try set for both bound
 
-                    #print "queue : " + str(j) + " min : " + str(queue_property[switch_index][i][j][0]) + " max : " + str(queue_property[switch_index][i][j][1])
-            #endloop each port in switch
-            #for rule_name in existing_rules:
+                        #print "queue : " + str(j) + " min : " + str(queue_property[switch_index][i][j][0]) + " max : " + str(queue_property[switch_index][i][j][1])
+                #endloop each port in switch
+                #for rule_name in existing_rules:
     
-            #print tmp_count_flow
-            #print "after count"
-            existing_rules[switch_index] = rule_update
-        #endif known switch
+                #print tmp_count_flow
+                #print "after count"
+                existing_rules[switch_index] = rule_update
+            #endif known switch
         
-    #endloop each switch                            
+        #endloop each switch                            
 
-    print queue_property
+        #print queue_property
 
-    #need to determine max bandwidth by the max ratio found in the path
-    #for switch_row in range( len(queue_property) ):
-    #    for port_row in range( len( queue_property[switch_row] ) ):
-    #        for queue_row in range( len( queue_property[switch_row][port_row]) ):
+        #need to determine max bandwidth by the max ratio found in the path
+        #for switch_row in range( len(queue_property) ):
+        #    for port_row in range( len( queue_property[switch_row] ) ):
+        #        for queue_row in range( len( queue_property[switch_row][port_row]) ):
 
-    for switch_row in range( len(existing_rules) ):
-        for port_row in range( len( existing_rules[switch_row] ) ):
-            for queue_row in range( len( existing_rules[switch_row][port_row]) ):
-                #get a list that contain every rule name on that queue( in the focusing port )
-                rule_port_dict = existing_rules[switch_row][port_row][queue_row]
+        for switch_row in range( len(existing_rules) ):
+            for port_row in range( len( existing_rules[switch_row] ) ):
+                for queue_row in range( len( existing_rules[switch_row][port_row]) ):
+                    #get a list that contain every rule name on that queue( in the focusing port )
+                    rule_port_dict = existing_rules[switch_row][port_row][queue_row]
                 
-                #begin to find the max out of the existing rule in this queue
-                tmp_max = 0
-                for rule_focus_name in rule_port_dict:
-                    if tmp_max < rule_max_bw[rule_focus_name]:
-                        tmp_max = rule_max_bw[rule_focus_name]
+                    #begin to find the max out of the existing rule in this queue
+                    tmp_max = 0
+                    for rule_focus_name in rule_port_dict:
+                        if tmp_max < rule_max_bw[rule_focus_name]:
+                            tmp_max = rule_max_bw[rule_focus_name]
 
-                #get the max ratio of all the path
-                if queue_property[switch_row][port_row][queue_row][1] > tmp_max:
-                    queue_property[switch_row][port_row][queue_row][1] = tmp_max
+                    #get the max ratio of all the path
+                    if queue_property[switch_row][port_row][queue_row][1] > tmp_max:
+                        queue_property[switch_row][port_row][queue_row][1] = tmp_max
 
             
         
-    #print rule_max_bw
-    #print "---------------------------------"
-    #print existing_rules
+        #print rule_max_bw
+        #print "---------------------------------"
+        #print existing_rules
+        
+        #dirname, basename = os.path.split(traffic_file_name)
+        #f_ptr = tempfile.NamedTemporaryFile(prefix=basename, dir=dirname)
+        #print f_ptr.name
 
-    f_ptr = io.open(traffic_file_name,'w',encoding='utf-8')
+        f_ptr = io.open(traffic_tmp_file_name,'w',encoding='utf-8')
 
-    #previously write number of switches and assume they all have less/equal than maxport
-    f_ptr.write( unicode(str(len(switches)) + "\n"))
+        #previously write number of switches and assume they all have less/equal than maxport
+        f_ptr.write( unicode(str(len(switches)) + "\n"))
+        f_ptr.flush()
 
+        #need to change into a list of how many switches and how many port each switch has
 
-    #need to change into a list of how many switches and how many port each switch has
+        for key in switches:
+            f_ptr.write(key + "\n" + unicode(str(nodes.index( switches[key] ))) +"\n")
+            f_ptr.flush()
 
-    for key in switches:
-        f_ptr.write(key + "\n" + unicode(str(nodes.index( switches[key] ))) +"\n")
+        #print bandwidthout
 
-    #print bandwidthout
+        for sw in bandwidthout:
+            f_ptr.write( unicode(str(len(sw)) + " "))
+            for port in sw :
+                f_ptr.write(unicode( str( port[0] if port[0] >= 0 else 0)  + " "))
+            f_ptr.write(u"\n")
+            f_ptr.flush()
+        #print("-----------------------------------------------------")
+        os.fsync(f_ptr.fileno())
+        f_ptr.closed
+        os.rename(traffic_file_name, traffic_bak_file_name)
+        #print "successfully rename current file to tmp file"
+        os.rename(traffic_tmp_file_name , traffic_file_name)
+        #print "successfully rename tmp file to current file"
+        os.remove(traffic_bak_file_name)
+        #print "successfully remove bak file"
 
-    for sw in bandwidthout:
-        f_ptr.write( unicode(str(len(sw)) + " "))
-        for port in sw :
-            f_ptr.write(unicode( str( port[0] if port[0] >= 0 else 0)  + " "))
-        f_ptr.write(u"\n")
-    #print("-----------------------------------------------------")
-    f_ptr.closed
-    traffic_data = new_traffic_data
+        traffic_data = new_traffic_data
                         
 
 #get available bandwidth
@@ -479,11 +500,11 @@ def reset_bandwidthout():
     for i in range( len(bandwidthout) ):
         bw_row = bandwidthout[i]
         for j in range( len(bw_row) ):
-            bw_row[j][0] = speed[i][j]
+            bw_row[j][0] = speed[i][j]/1000000
             for k in range ( 1, len(server_nodes)+1):
                 bw_row[j][k] = 0
 
-    print bandwidthout
+    #print bandwidthout
 
 def display_bandwidthout():
     global bandwidthout
@@ -616,7 +637,7 @@ if __name__ == '__main__':
     #for t in range(1):
         reset_bandwidthout()
 
-        #display_bandwidthout()
+        display_bandwidthout()
     
         measure_bandwidth()
 
@@ -624,16 +645,23 @@ if __name__ == '__main__':
         #it already has a map so it just has to get bandwidth information from polling
         #assume all the bandwidth available in every link is 3000000 for now
         #need to merge this code and polling.py together
-        display_bandwidthout()
+        #display_bandwidthout()
 
         flag_set_queue = open('flag_set_queue.txt','r')
         line = flag_set_queue.readline()
         if line == "T":
             
             flag_set_queue.close()
-            flag_set_queue = open('flag_set_queue.txt','w')
-            flag_set_queue.write('F')
-            flag_set_queue.close()
+            tmp_flag = open('flag_set_queue.txt.tmp','w')
+            #flag_set_queue = open('flag_set_queue.txt','w')
+            tmp_flag.write('F')
+            tmp_flag.flush()
+            os.fsync(tmp_flag.fileno())
+            tmp_flag.close()
+
+            os.rename('flag_set_queue.txt', 'flag_set_queue.txt.bak')
+            os.rename('flag_set_queue.txt.tmp', 'flag_set_queue.txt')
+            os.remove('flag_set_queue.txt.bak')
 
             allocate_queue()
 

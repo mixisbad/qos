@@ -18,6 +18,7 @@ import time
 import simplejson #used to process policies and encode/decode requests
 import subprocess #spawning subprocesses
 import argparse
+import mysql.connector
 
 def main():
 	
@@ -131,7 +132,7 @@ def add(name,src,dest,json,c,cprt):
    print "create circuit!!!"
    try:
    	cmd = "--controller=%s:%s --type ip --src %s --dst %s --add --name %s" % (c,cprt,src,dest,name)
-   	print './circuitpusher.py %s' % cmd
+   	#print './circuitpusher.py %s' % cmd
    	c_proc = subprocess.Popen('./circuitpusher.py %s' % cmd, shell=True)
    	print "Process %s started to create circuit" % c_proc.pid
    	#wait for the circuit to be created
@@ -139,73 +140,93 @@ def add(name,src,dest,json,c,cprt):
    except Exception as e:
    	print "could not create circuit, Error: %s" % str(e)
    
-   try:
-   	subprocess.Popen("cat circuits.json",shell=True).wait()
-   except Exception as e:
-   	print "Error opening file, Error: %s" % str(e)
-   	#cannot continue without file
-   	exit()
+   #edit by pattanapoom / no need to check file existence, stores data in DB
+   # try:
+   #	subprocess.Popen("cat circuits.json",shell=True).wait()
+   #except Exception as e:
+   #	print "Error opening file, Error: %s" % str(e)
+   #	cannot continue without file
+   #	exit()
    
-   print "Opening circuits.json in %s" % pwd
-   try:
-   	circs = "circuits.json"
-   	c_data = open(circs)
-   except Exception as e:
-   	print "Error opening file: %s" % str(e)
+   #print "Opening circuits.json in %s" % pwd
+
+   #edit by pattanapoom to connect mariadb instead of json file
+   #try:
+   #	circs = "circuits.json"
+   #	c_data = open(circs)
+   #except Exception as e:
+   #	print "Error opening file: %s" % str(e)
+
    
+   cnx = mysql.connector.connect(user='thesis', password='password',
+                              host='10.0.2.15',
+                              database='thesis')
+
+   cursor = cnx.cursor()
+
+   query = "SELECT name, dpid, inport, outport, dtime FROM circuit WHERE name = '%s'" % name
+
+   cursor.execute(query)
+   rows = cursor.fetchall()
+
+   #for (q_name, q_dpid, q_inport, q_outport, q_datetime) in cursor:
+	   #print "%s %s %d %d" % (q_name, q_dpid, q_inport, q_outport)
+	   #print q_datetime
+
+   cnx.close()
+
+   #end edit by pattanapoom
+
    print "Creating a QoSPath from host %s to host %s..." % (src,dest)
    #Sleep purely for end user
-   time.sleep(3)
-   for line in c_data:
-        data = simplejson.loads(line)
-        if data['name'] != name:
-        	continue
-        else:
-        	sw_id = data['Dpid']
-        	in_prt = data['inPort']
-        	out_prt = data['outPort']
-        	print"QoS applied to switch %s for circuit %s" % (sw_id,data['name'])
-        	print "%s: in:%s out:%s" % (sw_id,in_prt,out_prt)
-        	p = simplejson.loads(json)
-        	#add necessary match values to policy for path
-        	p['sw'] = sw_id
-        	p['name'] = name+"."+sw_id
-        	#screwed up connectivity on this match, remove
-        	#p['ingress-port'] = str(in_prt)
-        	p['ip-src'] = src
-        	p['ip-dst'] = dest
-        	keys = p.keys()
-        	l = len(keys)
-        	queue = False
-        	service = False
-        	for i in range(l):
-        		if keys[i] == 'queue':
-        			queue = True
-        		elif keys[i] == 'service':
-        			service = True
+   #time.sleep(3)
+   #for line in c_data:
+   for (q_name, q_dpid, q_inport, q_outport, q_datetime) in rows:
+	   sw_id = q_dpid
+	   in_prt = q_inport
+	   out_prt = q_outport
+	   print"QoS applied to switch %s for circuit %s" % (sw_id, name)
+	   print "%s: in:%s out:%s" % (sw_id,in_prt,out_prt)
+	   p = simplejson.loads(json)
+	   #add necessary match values to policy for path
+	   p['sw'] = sw_id
+	   p['name'] = name+"."+sw_id
+	   #screwed up connectivity on this match, temporary remove
+	   #p['ingress-port'] = str(in_prt)
+	   p['ip-src'] = src
+	   p['ip-dst'] = dest
+	   keys = p.keys()
+	   l = len(keys)
+	   queue = False
+	   service = False
+	   for i in range(l):
+		   if keys[i] == 'queue':
+			   queue = True
+		   elif keys[i] == 'service':
+			   service = True
         	
-        	if queue and service:
-        		polErr()
-        	elif queue and not service:
-        		p['enqueue-port'] = str(out_prt)
-        		pol = str(p)
-        		print "Adding Queueing Rule"
-        		sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(p)
-			print sjson
-        		cmd = "./qosmanager2.py --add --type policy --json '%s' -c %s -p %s" % (sjson,c,cprt)
-        		p = subprocess.Popen(cmd, shell=True).wait()
-        	elif service and not queue:
-        		print "Adding Type of Service"
-        		sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(p)
-        		print sjson
-        		cmd = "./qosmanager2.py --add --type service --json '%s' -c %s -p %s" % (sjson,c,cprt)
-        		p = subprocess.Popen(cmd, shell=True).wait()
-        	else:
-        		polErr()
-        		
+	   if queue and service:
+		   polErr()
+	   elif queue and not service:
+		   p['enqueue-port'] = str(out_prt)
+		   pol = str(p)
+		   print "Adding Queueing Rule"
+		   sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(p)
+		   print sjson
+		   cmd = "./qosmanager2.py --add --type policy --json '%s' -c %s -p %s" % (sjson,c,cprt)
+		   p = subprocess.Popen(cmd, shell=True).wait()
+	   elif service and not queue:
+		   print "Adding Type of Service"
+		   sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(p)
+		   print sjson
+		   cmd = "./qosmanager2.py --add --type service --json '%s' -c %s -p %s" % (sjson,c,cprt)
+		   p = subprocess.Popen(cmd, shell=True).wait()
+	   else:
+		   polErr()
+   #edit by pattanapoom
+   #c_data.close()
 def polErr():
-	print """Your policy is not defined right, check to 
-make sure you have a service OR a queue defined"""
+	print """Your policy is not defined right, check to make sure you have a service OR a queue defined"""
 	
 #Delete a Quality of Service Path
 # @NAME  -Name of the Path
@@ -237,7 +258,7 @@ def delete(name,c,p):
 			pol_id =  jsond[i]['policyid']
 			try:
 				cmd = "./qosmanager2.py --delete --type policy --json '{\"policy-id\":\"%s\"}' -c %s -p %s " % (pol_id,c,p)
-				print cmd
+				#print cmd
 				subprocess.Popen(cmd,shell=True).wait() 
 			except Exception as e:
 				print "Could not delete policy in path: %s" % str(e)
