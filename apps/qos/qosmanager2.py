@@ -247,10 +247,10 @@ def modify(obj_type, json, controller, port, conn):
 #
 # @author = Ryan Wallner
 def write_add(op,json_o=None):
-    conf = "qos-state.json"
-    pwd = os.getcwd()
-    #edit by pattanapoom / no need to checl for file existence / store data in DB
-    
+    #conf = "qos-state.json"
+    #pwd = os.getcwd()
+    #edit by pattanapoom / no need to check for file existence / store data in DB
+    '''
     try:
         if os.path.exists("%s/%s" % (pwd,conf)):
             qos_data = open(conf)
@@ -264,18 +264,19 @@ def write_add(op,json_o=None):
         print "Problem with qos-state file"
         print e
         exit(1)
-    
+    '''
  
     #load and encode
-    data = simplejson.load(qos_data)
-    sjson = simplejson.JSONEncoder(sort_keys=False,indent=3).encode(data)
-    jsond = simplejson.JSONDecoder().decode(sjson)
+    #data = simplejson.load(qos_data)
+    #sjson = simplejson.JSONEncoder(sort_keys=False,indent=3).encode(data)
+    #jsond = simplejson.JSONDecoder().decode(sjson)
     o_data = simplejson.loads(json_o)
-    o_data["datetime"] = time.asctime()
+    #o_data["datetime"] = time.asctime()
     #datetime.now()
     
     found = False
     if op == "service":
+        '''
     	for service in jsond['services']:
             if service['name'] == o_data['name']:
                 found = True
@@ -285,6 +286,8 @@ def write_add(op,json_o=None):
     	else:
             print "Writing service to qos-state.json"
             jsond['services'].append(o_data)
+        '''
+        print "[QoSPusher] : Error trying to access services"
     elif op == "policy":
 
         cnx = mysql.connector.connect(user='thesis', password = 'password', host='10.0.2.15', database='thesis')
@@ -315,20 +318,20 @@ def write_add(op,json_o=None):
         
     
     #deserialize and write back
-    sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(jsond)
-    qos_data.close()
-    newd = open(conf, 'w+')
+    #sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(jsond)
+    #qos_data.close()
+    #newd = open(conf, 'w+')
     #housekeeping
-    sjson = sjson.translate(None,'\\')
-    sjson = sjson.replace('"{', '{')
-    sjson = sjson.replace('}"', '}')
+    #sjson = sjson.translate(None,'\\')
+    #sjson = sjson.replace('"{', '{')
+    #sjson = sjson.replace('}"', '}')
     #incase of mis rep "<space>{|}
-    sjson = sjson.replace('" {', '{')
-    sjson = sjson.replace('} "', '}')
-    newd.write(sjson)
-    state = os.popen("echo '%s' | python -mjson.tool | more" % sjson).read()
+    #sjson = sjson.replace('" {', '{')
+    #sjson = sjson.replace('} "', '}')
+    #newd.write(sjson)
+    #state = os.popen("echo '%s' | python -mjson.tool | more" % sjson).read()
     #print state #debug
-    newd.close()
+    #newd.close()
         
 #DELETE JSON FILE FROM STATE JSON
 # @OP = sevice / policy 
@@ -336,8 +339,9 @@ def write_add(op,json_o=None):
 #
 # @author Ryan Wallner
 def write_remove(op,u_id):
-    conf = "qos-state.json"
-    pwd = os.getcwd()
+    #conf = "qos-state.json"
+    #pwd = os.getcwd()
+    '''
     try:
         if os.path.exists("%s/%s" % (pwd,conf)):
             print "Opening qos-state.json in %s" % pwd
@@ -348,13 +352,14 @@ def write_remove(op,u_id):
         print "Problem with qos-state file"
         print e
         exit(1)
-
+    '''
     #load and encode    
-    data = simplejson.load(qos_data)
-    sjson = simplejson.JSONEncoder(sort_keys=False,indent=3).encode(data)
-    jsond = simplejson.JSONDecoder().decode(sjson)
+    #data = simplejson.load(qos_data)
+    #sjson = simplejson.JSONEncoder(sort_keys=False,indent=3).encode(data)
+    #jsond = simplejson.JSONDecoder().decode(sjson)
         
     if op == "service":
+        '''
         print "Deleting service from qos-state.json"
         try:
             found = False
@@ -367,8 +372,10 @@ def write_remove(op,u_id):
                 print "Could not find service to delete from %s" % conf
         except ValueError as e:
             "Could not delete service, does not exist"
+        '''
+        print "Error [QosPusher] trying to access services"
     elif op == "policy":
-        print "Deleting policy from qos.state.json"
+        #print "Deleting policy from qos.state.json"
         try:
             found = False
 
@@ -398,19 +405,19 @@ def write_remove(op,u_id):
             "Could not delete policy, does not exist"
     
     #deserialize and write back
-    sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(jsond)
-    qos_data.close()
-    newd = open(conf, 'w+')
-    sjson = sjson.translate(None,'\\')
-    sjson = sjson.replace('"{', '{')
-    sjson = sjson.replace('}"', '}')
+    #sjson =  simplejson.JSONEncoder(sort_keys=False,indent=3).encode(jsond)
+    #qos_data.close()
+    #newd = open(conf, 'w+')
+    #sjson = sjson.translate(None,'\\')
+    #sjson = sjson.replace('"{', '{')
+    #sjson = sjson.replace('}"', '}')
     #incase of mis rep "<space>{|}
-    sjson = sjson.replace('" {', '{')
-    sjson = sjson.replace('} "', '}')
-    newd.write(sjson)
-    state = os.popen("echo '%s' | python -mjson.tool | more" % sjson).read()
+    #sjson = sjson.replace('" {', '{')
+    #sjson = sjson.replace('} "', '}')
+    #newd.write(sjson)
+    #state = os.popen("echo '%s' | python -mjson.tool | more" % sjson).read()
     #print state #debug
-    newd.close()
+    #newd.close()
     
 #ENABLE QoS ON CONTROLLER
 def enable(ip,port):

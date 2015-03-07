@@ -80,14 +80,9 @@ controllerRestIp = args.controllerRestIp
 
 flag_exists_circuit = False;
 
-cnx = mysql.connector.connect(user='thesis', password='password',
-                              host='10.0.2.15',
-                              database='thesis')
-
+cnx = mysql.connector.connect(user='thesis', password='password', host='10.0.2.15', database='thesis')
 cursor = cnx.cursor()
-
 query = "SELECT name FROM circuit WHERE name = '%s' " % args.circuitName
-
 cursor.execute(query)
 row = cursor.fetchone()
 
@@ -99,9 +94,6 @@ else:
 cnx.close()
 
 if args.action=='add':
-
-   
-
     #circuitDb = open('./circuits.json','a')
     
     if flag_exists_circuit:
@@ -109,8 +101,6 @@ if args.action=='add':
         sys.exit()
     #else:
     #    circuitExists = False
-
-    
     
     # retrieve source and destination device attachment points
     # using DeviceManager rest API 
@@ -193,11 +183,6 @@ if args.action=='add':
 
             #end edit by pattanapoom store results in DB
 
-
-
-        
-            
-        
     cnx.commit()
     cnx.close()
 
