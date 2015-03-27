@@ -54,15 +54,15 @@ parser.add_argument('--name', dest='circuitName', action='store', default='circu
 
 #user catches
 if len(sys.argv) == 1:
- command = './circuitpusher.py -h'
- instruct = os.popen(command).read()
- print instruct
- exit(1)
+    command = './circuitpusher.py -h'
+    instruct = os.popen(command).read()
+    print instruct
+    exit(1)
 elif sys.argv[1] == "help":
- command = './circuitpusher.py -h'
- instruct = os.popen(command).read()
- print instruct
- exit(1)
+    command = './circuitpusher.py -h'
+    instruct = os.popen(command).read()
+    print instruct
+    exit(1)
 
 #parse arguments
 args = parser.parse_args()
@@ -114,6 +114,7 @@ if args.action=='add':
     result = data.read()
     data.close()
     #result = os.popen(command).read()
+    print result
     parsedResult = json.loads(result)
 
     sourceSwitch = parsedResult[0]['attachmentPoint'][0]['switchDPID']
@@ -155,6 +156,11 @@ if args.action=='add':
 
     cursor = cnx.cursor()
 
+    ap1Dpid = ""
+    ap1Port = 0
+    ap2Dpid = ""
+    ap2Port = 0
+    
     for i in range(len(parsedResult)):
         if i % 2 == 0:
             ap1Dpid = parsedResult[i]['switch']
@@ -176,6 +182,9 @@ if args.action=='add':
 
             
             query = "INSERT INTO circuit values('%s', '%s', %s, %s, '%s')" % (args.circuitName, ap1Dpid, ap1Port, ap2Port, datetime.now())
+            print query
+            print "ap1Dpid" + ap1Dpid
+            print "ap2Dpid" + ap2Dpid
             #print '******************************************'
             #print query
             #print '******************************************'

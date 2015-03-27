@@ -123,52 +123,69 @@ def measure_bandwidth():
                     key_match = match["networkDestination"]+match["networkSource"]
                     actions = flow["actions"]
 
-
+                    
                     for action in actions:
+                        port_int = int(action["port"])
                         #in case it want to connect with controller, using NAT to connect outside topology
-                        if int(action["port"]) > len(bandwidthout[switch_index]):
+                        if port_int > len(bandwidthout[switch_index]):
                             continue
 
                         if action["type"] == "OUTPUT" or action["type"] == "OPAQUE_ENQUEUE":
                             total_duration = 0
                             total_byte = 0
                             found = False
-                            if (switch_id,action["port"]) in traffic_data:
-                                temp_traffic = traffic_data[(switch_id,action["port"])]
+
+                            buildkey = (switch_id,port_int)
+
+                            if buildkey in traffic_data:
+                                temp_traffic = traffic_data[buildkey]
                                 if key_match in temp_traffic:
                                     temp_flow = temp_traffic[key_match]
                                     old_duration = temp_flow["duration"]
                                     old_bytecount = temp_flow["byteCount"]
-                                    total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)-old_duration                                    
+                                    total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000.0)-old_duration                                    
                                     if total_duration >= 0:
                                         found = True
                                         total_byte = flow["byteCount"]-old_bytecount                            
                             if not found:
-                                total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
+                                total_duration = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000.0)
                                 total_byte = flow["byteCount"]
 
-                            buildkey = (switch_id,action["port"])
-                        
-                            #add information into globall traffic data for next iteration 
+                           
                             if buildkey not in new_traffic_data:
                                 new_traffic_data[buildkey] = {}
 
                             #instead of using the whole match use only src,dst will be fine for this testing
                             new_traffic_data[buildkey][key_match] = {}
-                            new_traffic_data[buildkey][key_match]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000)
+                            new_traffic_data[buildkey][key_match]["duration"] = (flow["durationSeconds"]+flow["durationNanoseconds"]/1000000000.0)
                             new_traffic_data[buildkey][key_match]["byteCount"] = flow["byteCount"]
-                        
+
+                            bw = 0.0
+                            #there is someething wrong??
                             if total_duration > 0:
-                                bw = ((total_byte*8)/(total_duration))/1000000
+                                bw = ((total_byte*8.0/1000000.0)/(total_duration))
                             else:
-                                bw = 0
+                                bw = 0.0
                             #print "raw sw : " + switch_id
                             #print "sw id : " + str(switch_index)
                             #print "raw port : " + str(action["port"])
                             #print "port : " + str(int(action["port"])-1)
-                            #print bandwidthout[switch_index]
-                            bandwidthout[switch_index][int(action["port"])-1][0] = bandwidthout[switch_index][int(action["port"])-1][0] - bw
-
+                            '''
+                            print "****************************"
+                            print "bytecount"
+                            print flow["byteCount"]
+                            print "duration"
+                            print flow["durationSeconds"]
+                            print "total_byte"
+                            print total_byte
+                            print "total_duration"
+                            print total_duration
+                            print "bw"
+                            print bw
+                            print "****************************"
+                            '''
+                            bandwidthout[switch_index][port_int-1][0] = bandwidthout[switch_index][port_int-1][0] - bw
+                  
                             destination = match["networkDestination"]
                             source = match["networkSource"]
                             #print "destination : " + destination 
@@ -178,12 +195,11 @@ def measure_bandwidth():
 
 
                                 server_index = server[destination]['id']
-                                port_int = int(action["port"])-1
                                 #add 1 to server index because [0] is reserved for available
-                                bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
+                                bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
 
-                                tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
+                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
 
                                 #print adjacent
                                 #check if it is the src node
@@ -192,16 +208,16 @@ def measure_bandwidth():
                             
                                 #generate rules name to mark for update in its port after finish all flow in a switch
                                 rule_name = source+"-"+destination
-                                rule_update[port_int][server_index].append(rule_name)
+                                rule_update[port_int-1][server_index].append(rule_name)
                             
                             elif source in server:
                                 server_index = server[source]['id']
-                                port_int = int(action["port"])-1
 
-                                bandwidthout[switch_index][port_int][server_index+1] = bandwidthout[switch_index][port_int][server_index+1] + bw
+
+                                bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
                             
-                                tmp_count_flow[switch_index][port_int][server_index] = tmp_count_flow[switch_index][port_int][server_index] + 1
+                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
                                 server_name = server[source]['name']
                                 server_nodes_index = nodes.index(server_name)
                             
@@ -209,13 +225,11 @@ def measure_bandwidth():
                                 #generate rules name to mark for update in its port after finish all flow in a switch
                                 rule_name = source+"-"+destination
                                 #print "rule name : " + rule_name
-                                rule_update[port_int][server_index].append(rule_name)
+                                rule_update[port_int-1][server_index].append(rule_name)
                         #endif action = output / opaque queue
                     #endloop each action
                 #endloop each flow
-
-
-
+                
                 #print rule_update
                 #begin count and show associate rule with this port
                 #print "sw : " + str(switch_index+1)
@@ -244,10 +258,11 @@ def measure_bandwidth():
                             queue_property[switch_index][i][j][0] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
                             #try set for max
                             #queue_property[switch_index][i][j][1] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
-                            #if queue_property[switch_index][i][j][1] == 0.0:
-                            #    queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
+                            if queue_property[switch_index][i][j][1] < speed[switch_index][i]/100.0 :
+                                queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
                         else:
-                            queue_property[switch_index][i][j][0] = 0.0
+                            #queue_property[switch_index][i][j][0] = 0.0
+                            queue_property[switch_index][i][j][1] = speed[switch_index][i]/100.0
                             #try set for max
                             #queue_property[switch_index][i][j][1] = speed[switch_index][i]
 
@@ -374,20 +389,15 @@ def allocate_queue():
 
                 queuecmd = "sudo ovs-vsctl -- set port %s qos=@qosport%s -- " % ( port , port )
                 queuecmd = queuecmd + "--id=@qosport%s create qos type=linux-htb other-config:max-rate=%d " % ( port , int(qosmax) )
-                for i in range(0, len(queue_property[index][port_num])+1):
-                    if i == 0:
-                        queuecmd = queuecmd + "queues=0=@q0"
-                    else:
-                        queuecmd = queuecmd + "," + str(i) + "=@q" + str(i)
+                queuecmd = queuecmd + "queues=0=@q0"
+                for i in range(1, len(queue_property[index][port_num])+1):
+                    queuecmd = queuecmd + "," + str(i) + "=@q" + str(i)
 
                 queuecmd = queuecmd + " -- "
-                    
-                for i in range(0, len(queue_property[index][port_num])+1):
-                    if i == 0:
-                        queuecmd = queuecmd +     "--id=@q0 create queue other-config:max-rate=%d other-config:min-rate=%s " % ( int(qosmax) , "0" )
-                    else:
-                        #queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), str(queue_property[index][port_num][i-1][1]), str(queue_property[index][port_num][i-1][0]) )
-                        queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), int(queue_property[index][port_num][i-1][0]), int(queue_property[index][port_num][i-1][0]) )
+                queuecmd = queuecmd +     "--id=@q0 create queue other-config:max-rate=%d other-config:min-rate=%s " % ( int(qosmax) , "0" )
+                for i in range(1, len(queue_property[index][port_num])+1):
+                    queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), str(queue_property[index][port_num][i-1][1]), str(queue_property[index][port_num][i-1][0]) )
+                    #queuecmd = queuecmd + "-- --id=@q%s create queue other-config:max-rate=%s other-config:min-rate=%s " %( str(i), int(queue_property[index][port_num][i-1][0]), int(queue_property[index][port_num][i-1][0]) )
 
 
 
@@ -397,90 +407,7 @@ def allocate_queue():
                 #print os.popen(queuecmd).read()
                 os.popen(queuecmd)
                 #print "end result : \n\n "
-            
-'''
-def allocate_queue_wrong():
-    #assume all the bandwidth available in every link is 3000000 for now
-    index = 0
-    #loop through all switches
-    for focus_switch in adjacent:
-        #loop through all output port of a switch to set queues
-        focus_dpid = switches_dpid[switch_nodes[index]]
-        print switch_nodes[index] + " : " + focus_dpid
-        port_num = 0        
-        for outport in focus_switch:
-            #if output port is another switch, begin to check available bandwidth for each server from this output port
-            if outport != -1 and outport < len(switch_nodes):
 
-                node_avai_bandw = [-1 for i in range(len(nodes))]
-                node_visited = [False for i in range(len(nodes))]
-
-                ban_node = index
-                 
-                #start using modified Dijkstra for bottle neck and 
-                #mark that don't come back to the switch whose outport itself which has the ref number as index
-                #this queue is suppose to contains only switch
-                process_queue = Queue.PriorityQueue()
-
-                #add a start node
-                #need to get from actual bandwidth map, node -> outport
-                bandwidth = get_avai_bandwidth_on_link(index,port_num)
-                node_avai_bandw[outport] = bandwidth
-
-                #use max_bandwidth - bandwidth to be able to sort with priority queue
-                process_queue.put( (max_bandwidth - bandwidth, outport) )
-                node_visited[outport] = True
-                #start a modified Dijkstra
-                while not process_queue.empty():
-                    item = process_queue.get()
-                    node_id = item[1]
-                     
-                    #looking for available outgoing from the node
-                    ports = adjacent[node_id]
-                    count_port = 0
-                    for next_node in ports:
-                        if next_node == -1:
-                            count_port = count_port+1
-                            continue
-                        #if next node is not a ban node and isn't visited yet
-                        elif next_node != ban_node and not node_visited[next_node]:
-                            #need to get from actual bandwidth map, node -> outport
-                            bandwidth = get_avai_bandwidth_on_link(node_id,count_port)
-                            bandwidth = min(bandwidth, node_avai_bandw[node_id])
-                            node_avai_bandw[next_node] = bandwidth
-                            node_visited[next_node] = True
-                            #if next node is a switch then add to queue for further processing
-                            if next_node < len(switch_nodes):
-                                process_queue.put( (max_bandwidth - bandwidth, next_node) )
-                            count_port = count_port + 1
-                        else:
-                            count_port = count_port + 1
-
-                #after get all the results of each server 
-                #need to consider to existing flows to the server that pass through the focusing port as well
-
-
-                #show the result
-                
-
-                print name_index[focus_dpid][port_num+1]
-                for i in range(len(switch_nodes),len(switch_nodes)+len(server_nodes)):
-                    if node_visited[i]:
-                        print nodes[i] + " : avai bw " + str(node_avai_bandw[i]) + " : existing bw " + str(get_exists_bandwidth_on_link(index,port_num, (i - len(switch_nodes)) ))
-
-                #print "total bandwidth for " + nodes[index] + "-eth" + str(port_num+1) + " : " + str(total_bandwidth)
-
-                #calculate total bandwidth
-                #total_bandwidth = 0
-                #for i in range(len(switch_nodes),len(switch_nodes)+len(server_nodes)):
-                #    if node_visited[i]:
-                #        print nodes[i] + " : bw " + str(node_avai_bandw[i])
-                #        total_bandwidth = total_bandwidth + node_avai_bandw[i]
-                #print "total bandwidth for " + nodes[index] + "-eth" + str(port_num+1) + " : " + str(total_bandwidth)
-
-            port_num = port_num + 1
-        index = index + 1
-'''
 def allocate_bandwidthout():
     global bandwidthout
     global adjacent
@@ -500,7 +427,7 @@ def reset_bandwidthout():
     for i in range( len(bandwidthout) ):
         bw_row = bandwidthout[i]
         for j in range( len(bw_row) ):
-            bw_row[j][0] = speed[i][j]/1000000
+            bw_row[j][0] = speed[i][j]/1000000.0
             for k in range ( 1, len(server_nodes)+1):
                 bw_row[j][k] = 0
 
@@ -637,15 +564,11 @@ if __name__ == '__main__':
     #for t in range(1):
         reset_bandwidthout()
 
-        display_bandwidthout()
-    
-        measure_bandwidth()
-
         #call method to allocate queue on switch periodically
         #it already has a map so it just has to get bandwidth information from polling
-        #assume all the bandwidth available in every link is 3000000 for now
-        #need to merge this code and polling.py together
-        #display_bandwidthout()
+        measure_bandwidth()
+
+        display_bandwidthout()
 
         flag_set_queue = open('flag_set_queue.txt','r')
         line = flag_set_queue.readline()

@@ -814,7 +814,8 @@ public class QoS implements IQoSService, IFloodlightModule,
 			//add the matches and actions and return
 			fm.setMatch(match)
 				.setActions(actions)
-				.setIdleTimeout((short) 0)  // infinite
+				//edit by pattanapoom
+				.setIdleTimeout((short) 5)  // infinite // change to 5 edit by pattanapoom
 				.setHardTimeout((short) 0)  // infinite
 				.setBufferId(OFPacketOut.BUFFER_ID_NONE)
 				.setFlags((short) 0)
@@ -848,7 +849,7 @@ public class QoS implements IQoSService, IFloodlightModule,
 			//add the matches and actions and return.class.ge
 			fm.setMatch(match)
 				.setActions(actions)
-				.setIdleTimeout((short) 0)  // infinite
+				.setIdleTimeout((short) 5)  // infinite // change to 5 edit by pattanapoom
 				.setHardTimeout((short) 0)  // infinite
 				.setBufferId(OFPacketOut.BUFFER_ID_NONE)
 				.setFlags((short) 0)

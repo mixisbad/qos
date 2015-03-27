@@ -6,7 +6,7 @@ Developed By: Ryan Wallner (ryan.wallner1@marist.edu)
 Add QoS to a specific path in the network. Utilized circuit pusher developed by KC Wang
 [Note]
 	*the circuitpusher.py is needed in the same directory for this application to run
-	 succesfully! This circuitpusher instance is used WITHOUT pushing statis flows. 
+	 succesfully! This circuitpusher instance is used WITHOUT pushing static flows. 
 	 the static flows are commented out, circuitpusher is only used to get route.
 
 	[author] - rjwallner
@@ -143,7 +143,7 @@ def add(name,src,dest,json,c,cprt):
     cnx.close()
 
     #end edit by pattanapoom
-
+    
     print "Creating a QoSPath from host %s to host %s..." % (src,dest)
     #Sleep purely for end user
     #time.sleep(3)
@@ -194,6 +194,7 @@ def add(name,src,dest,json,c,cprt):
             polErr()
     #edit by pattanapoom
     #c_data.close()
+    
 def polErr():
     print """Your policy is not defined right, check to make sure you have a service OR a queue defined"""
 	
@@ -215,6 +216,9 @@ def delete(name,c,p):
 	
     qos_s = os.popen("./qosmanager2.py --list --type policies --controller %s --port %s" %(c,p)).read()
     #pull only the right info from response
+    #print "****************************************"
+    #print qos_s
+    #print "****************************************"
     qos_s = qos_s[qos_s.find("[",qos_s.find("[")+1):qos_s.rfind("]")+1]
     data = simplejson.loads(qos_s)
     sjson = simplejson.JSONEncoder(sort_keys=False,indent=3).encode(data)

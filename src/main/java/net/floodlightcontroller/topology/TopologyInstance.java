@@ -34,8 +34,8 @@ import org.slf4j.LoggerFactory;
 @LogMessageCategory("Network Topology")
 public class TopologyInstance {
 
-	//public static final boolean useWidest = true;
-	public static final boolean useWidest = false;
+	public static final boolean useWidest = true;
+	//public static final boolean useWidest = false;
 	
     public static final short LT_SH_LINK = 1;
     public static final short LT_BD_LINK = 2;
@@ -666,60 +666,6 @@ public class TopologyInstance {
 		HashMap<Long, Float> cost = new HashMap<Long, Float>();
 		float w;
 
-		// ***************************edit by Pattanapoom Hand
-		// ************************
-		/*
-		int num_switch = 0;
-		int num_port = 0;
-		float[][] bandwidth = null;
-		HashMap name_index = new HashMap();
-		String line;
-		Integer index;
-		
-		Scanner scan;
-	    File file = new File("traffic.txt");
-	    try {
-	        scan = new Scanner(file);
-
-	        num_switch = scan.nextInt();
-	        num_port = scan.nextInt();
-	        
-	        for(int i = 0; i < num_switch ; ++i)
-	        {
-	        	scan.nextLine();
-		        line = scan.nextLine();
-		        index = scan.nextInt();
-		        
-		        name_index.put(HexString.toLong(line),index);
-		        //name_index.put(key, value)
-	        }
-	        
-	        log.error("num_switch: " + num_switch);
-			log.error("num_port: " + num_port);
-	        
-	        bandwidth = new float[num_switch][num_port];
-	        
-	        for(int i = 0; i < num_switch ; ++i)
-	        {
-	        	for(int j = 0 ; j < num_port ; ++j)
-	        	{
-	        		bandwidth[i][j] = scan.nextFloat();
-	        	}
-	        	
-	        }
-	    }catch(FileNotFoundException e)
-	    {
-	    	
-	    }
-
-
-		log.error("c.links: " + c.links);
-		log.error("c.getLinks(): " + c.getLinks());
-		log.error("c.getNodes(): " + c.getNodes());
-		*/
-		// ***************************end edit by Pattanapoom Hand
-		// ************************
-
 		for (Long node : c.links.keySet()) {
 			nexthoplinks.put(node, null);
 			cost.put(node, 0f);
@@ -817,7 +763,7 @@ public class TopologyInstance {
 				scan = new Scanner(file);
 
 				num_switch = scan.nextInt();
-				num_port = scan.nextInt();
+				//num_port = scan.nextInt();
 
 				if (num_switch != 0) {
 
@@ -834,8 +780,9 @@ public class TopologyInstance {
 					}
 
 					// bandwidth = new float[num_switch][num_port];
-
+					
 					for (int i = 0; i < num_switch; ++i) {
+						num_port = scan.nextInt();
 						for (int j = 0; j < num_port; ++j) {
 							// bandwidth[i][j] = scan.nextFloat();
 							// temporary workaround use only src dpid and src

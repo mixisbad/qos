@@ -53,9 +53,12 @@ import org.openflow.protocol.OFMatch;
 import org.openflow.protocol.OFMessage;
 import org.openflow.protocol.OFPacketIn;
 import org.openflow.protocol.OFPacketOut;
+import org.openflow.protocol.OFPort;
 import org.openflow.protocol.OFType;
 import org.openflow.protocol.action.OFAction;
+import org.openflow.protocol.action.OFActionEnqueue;
 import org.openflow.protocol.action.OFActionOutput;
+import org.openflow.protocol.action.OFActionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -215,8 +218,19 @@ public abstract class ForwardingBase
         OFFlowMod fm =
                 (OFFlowMod) floodlightProvider.getOFMessageFactory()
                                               .getMessage(OFType.FLOW_MOD);
-        OFActionOutput action = new OFActionOutput();
-        action.setMaxLength((short)0xffff);
+        OFAction action = null;
+        //if(match.getDataLayerType() != (short)0x0800 )
+        //{
+       	action = new OFActionOutput();
+        ((OFActionOutput)action).setMaxLength((short)0xffff);
+        //}
+        /*else if(match.getDataLayerType() == (short)0x0800 )
+        {
+        	action = new OFActionEnqueue();
+        	((OFActionEnqueue)action).setQueueId(0);        
+        	((OFActionEnqueue)action).setLength((short)0xffff);
+        	action.setType(OFActionType.OPAQUE_ENQUEUE);
+        }*/
         List<OFAction> actions = new ArrayList<OFAction>();
         actions.add(action);
 
@@ -226,8 +240,19 @@ public abstract class ForwardingBase
             .setCookie(cookie)
             .setCommand(flowModCommand)
             .setMatch(match)
-            .setActions(actions)
-            .setLengthU(OFFlowMod.MINIMUM_LENGTH+OFActionOutput.MINIMUM_LENGTH);
+            .setActions(actions);
+            
+        //if(match.getDataLayerType() != (short)0x0800 )
+        //{
+        //	System.err.println("first case length");
+            fm.setLengthU((short)OFFlowMod.MINIMUM_LENGTH + OFActionOutput.MINIMUM_LENGTH);
+        //}
+            /*
+        else if(match.getDataLayerType() == (short)0x0800 )
+        {
+        	System.err.println("second case length");
+            fm.setLengthU((short)OFFlowMod.MINIMUM_LENGTH +  OFActionEnqueue.MINIMUM_LENGTH);
+        }*/
 
         List<NodePortTuple> switchPortList = route.getPath();
 
@@ -260,9 +285,20 @@ public abstract class ForwardingBase
 
             short outPort = switchPortList.get(indx).getPortId();
             short inPort = switchPortList.get(indx-1).getPortId();
+            
             // set input and output ports on the switch
             fm.getMatch().setInputPort(inPort);
-            ((OFActionOutput)fm.getActions().get(0)).setPort(outPort);
+            //if(match.getDataLayerType() != (short)0x0800 )
+            //{
+            	((OFActionOutput)fm.getActions().get(0)).setPort(outPort);
+            //}
+            	/*
+            else if (match.getDataLayerType() == (short)0x0800 )
+            {
+            	((OFActionEnqueue)fm.getActions().get(0)).setPort(outPort);
+            	fm.setOutPort(OFPort.OFPP_NONE.getValue());
+            	
+            }*/
 
             try {
                 counterStore.updatePktOutFMCounterStore(sw, fm);
@@ -356,9 +392,14 @@ public abstract class ForwardingBase
         // set actions
         List<OFAction> actions = new ArrayList<OFAction>();
         actions.add(new OFActionOutput(outPort, (short) 0xffff));
+        
+        //actions.add(new OFActionEnqueue(outPort, 0));
 
         po.setActions(actions)
           .setActionsLength((short) OFActionOutput.MINIMUM_LENGTH);
+        //po.setActions(actions)
+        //.setActionsLength((short) OFActionEnqueue.MINIMUM_LENGTH);
+        
         short poLength =
                 (short) (po.getActionsLength() + OFPacketOut.MINIMUM_LENGTH);
 
@@ -436,10 +477,16 @@ public abstract class ForwardingBase
 
         // set actions
         List<OFAction> actions = new ArrayList<OFAction>();
+        
         actions.add(new OFActionOutput(outport, (short) 0xffff));
+        //actions.add(new OFActionEnqueue(outport, 0));
 
         po.setActions(actions)
           .setActionsLength((short) OFActionOutput.MINIMUM_LENGTH);
+        
+        //po.setActions(actions)
+        //.setActionsLength((short) OFActionEnqueue.MINIMUM_LENGTH);
+        
         short poLength =
                 (short) (po.getActionsLength() + OFPacketOut.MINIMUM_LENGTH);
 

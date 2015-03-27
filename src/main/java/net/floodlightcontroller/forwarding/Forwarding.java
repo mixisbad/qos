@@ -256,7 +256,7 @@ public class Forwarding extends ForwardingBase implements IFloodlightModule {
                                           new Object[] {match, route, 
                                                         dstDap.getSwitchDPID(),
                                                         dstDap.getPort()});
-                            }
+                            } 
                             long cookie = 
                                     AppCookie.makeCookie(FORWARDING_APP_ID, 0);
                             
@@ -270,15 +270,20 @@ public class Forwarding extends ForwardingBase implements IFloodlightModule {
                             }
                             if (decision != null) {
                                 wildcard_hints = decision.getWildcards();
+                                //System.out.println("decision != null");
                             } else {
+                            	//System.out.println("decision == null");
                             	// L2 only wildcard if there is no prior route decision
                                 wildcard_hints = ((Integer) sw
                                         .getAttribute(IOFSwitch.PROP_FASTWILDCARDS))
                                         .intValue()
-                                        & ~OFMatch.OFPFW_IN_PORT
+                                        & OFMatch.OFPFW_IN_PORT
                                         & ~OFMatch.OFPFW_DL_VLAN
-                                        & ~OFMatch.OFPFW_DL_SRC
-                                        & ~OFMatch.OFPFW_DL_DST
+                                        & ~OFMatch.OFPFW_DL_TYPE
+                                        & OFMatch.OFPFW_DL_SRC
+                                        & OFMatch.OFPFW_DL_DST
+                                        & OFMatch.OFPFW_TP_SRC
+                                        & OFMatch.OFPFW_TP_DST
                                         & ~OFMatch.OFPFW_NW_SRC_MASK
                                         & ~OFMatch.OFPFW_NW_DST_MASK;
                             }

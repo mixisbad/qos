@@ -50,7 +50,7 @@ def main():
     c = args.c
     p = args.p
     obj = args.obj
-    type = args.type
+    arg_type = args.type
     qos_op = args.qos_op
     action_op = args.action_op
 	
@@ -72,15 +72,21 @@ def main():
 	
     #Listing
     if action_op == "list":
-        if type != None:
-            if "service" in type:
+        if arg_type != None:
+            if "service" in arg_type:
                 listServices(c,p)
                 exit()
-            elif "policy" in type:
+            elif "services" in arg_type:
+                listServices(c,p)
+                exit()
+            elif "policy" in arg_type:
+                listPolicies(c,p)
+                exit()
+            elif "policies" in arg_type:
                 listPolicies(c,p)
                 exit()
             else:
-                print "Unknown type: %s to list" % type
+                print "Unknown type: %s to list" % arg_type
                 exit()
         else:
             print "Must include type of to list"
@@ -92,21 +98,21 @@ def main():
             print "Must include json object"
             exit(1)
         else:
-            add(type, obj, c, p, helper)
+            add(arg_type, obj, c, p, helper)
             exit()
     if action_op ==  "delete":	 
         if obj == None:
             print "Error, Must include json"
             exit(1)
         else:
-            delete(type, obj, c, p, helper)
+            delete(arg_type, obj, c, p, helper)
             exit()
     if action_op ==  "modify":	 
         if obj == None:
             print "Error, Must include json"
             exit(1)
         else:
-            modify(type, obj, c, p, helper)
+            modify(arg_type, obj, c, p, helper)
             exit()
     else:
         er = "Unrecognized commands"
@@ -131,6 +137,7 @@ def add(obj_type, json, controller, port, conn):
                 write_add("service",_json) 
             else:
                 print "[QoSPusher] please enable QoS on controller"
+
         except Exception as e:
             print e
             print "Could Not Complete Request"
@@ -276,27 +283,49 @@ def write_add(op,json_o=None):
     
     found = False
     if op == "service":
+            
+        cnx = mysql.connector.connect(user='thesis', password = 'password', host='10.0.2.15', database = 'thesis')
+        cursor = cnx.cursor()
+        query = "SELECT name FROM service where name = '%s'" % o_data['name']
+        cursor.execute(query)
+        row = cursor.fetchone()
+        if row is not None:
+            print row
+            found = True
+
         '''
     	for service in jsond['services']:
             if service['name'] == o_data['name']:
                 found = True
                 break
+        '''
     	if found:
             print "[QoSPusher]: Service Already Exists"
     	else:
-            print "Writing service to qos-state.json"
+            print "Writing service to qos-state.json (DB)"
             jsond['services'].append(o_data)
-        '''
-        print "[QoSPusher] : Error trying to access services"
+            query = "INSERT INTO service values( '%s', %s)" % (o_data['name'],o_data['tos'])
+            cursor.execute(query)
+
+        cnx.commit()
+        cnx.close()
+        #print "[QoSPusher] : Error trying to access services"
     elif op == "policy":
+
+       # print "\n\n\n\n************************************\n\n\n\n"
+       # print "here is o_data"
+       # print o_data
+       # print "\n\n\n\n************************************\n\n\n\n"
 
         cnx = mysql.connector.connect(user='thesis', password = 'password', host='10.0.2.15', database='thesis')
         cursor = cnx.cursor()
-        query = "SELECT name FROM policy WHERE name = '%s' " % o_data['name']
+        query = "SELECT name FROM policy WHERE name = '%s'" % o_data['name']
         cursor.execute(query)
         row = cursor.fetchone()
         if row is not None:
+            print row
             found = True
+            print row
 
     	#for policy in jsond['policies']:
     	#	#print "checking %s against %s" % (policy['name'] ,o_data['name'])
@@ -306,7 +335,7 @@ def write_add(op,json_o=None):
     	if found:
             print "[QoSPusher]: Policy Already Exists"
     	else:
-            print "Writing policy to qos.state.json"
+            print "Writing policy to qos.state.json (DB)"
             #jsond['policies'].append(o_data)
             
             query = "INSERT INTO policy values( '%s', %s, '%s', '%s', '%s', '%s', %s, %s, '%s') " % (o_data['ip-src'],o_data['protocol'], o_data['name'], o_data['ip-dst'], o_data['sw'], datetime.now(), o_data['queue'], o_data['enqueue-port'], o_data['eth-type'])
@@ -359,21 +388,28 @@ def write_remove(op,u_id):
     #jsond = simplejson.JSONDecoder().decode(sjson)
         
     if op == "service":
-        '''
         print "Deleting service from qos-state.json"
         try:
             found = False
-            for srv in range(len(jsond['services'])):
-                if u_id == jsond['services'][srv]['name']:
-                    found = True
-                    del jsond['services'][srv]
-                    break;
+
+            cnx = mysql.connector.connect(user='thesis', password = 'password', host='10.0.2.15', database='thesis')
+            cursor = cnx.cursor()
+            query = "SELECT name FROM service WHERE name = '%s' " % u_id
+            cursor.execute(query)
+            row = cursor.fetchone()
+            if row is not None:
+                found = True
             if not found:
                 print "Could not find service to delete from %s" % conf
+            else:
+                query = "DELETE FROM service WHERE name = '%s' " % u_id
+                cursor.execute(query)
+
+            cnx.commit()
+            cnx.close()
         except ValueError as e:
             "Could not delete service, does not exist"
-        '''
-        print "Error [QosPusher] trying to access services"
+    
     elif op == "policy":
         #print "Deleting policy from qos.state.json"
         try:
