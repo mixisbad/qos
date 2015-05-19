@@ -403,10 +403,10 @@ def allocate_queue():
 
 
             
-                #print "result : \n\n "
-                #print queuecmd
-                #print os.popen(queuecmd).read()
-                os.popen(queuecmd)
+                print "result : \n\n "		
+                print queuecmd
+                print os.popen(queuecmd).read()
+                #os.popen(queuecmd)
                 #print "end result : \n\n "
 
 def allocate_bandwidthout():
@@ -561,40 +561,16 @@ if __name__ == '__main__':
 
     #begin the loop
     
-    while True :
+    #while True :
     #for t in range(1):
-        reset_bandwidthout()
-        time.sleep(3)
+    reset_bandwidthout()
+    time.sleep(3)
 
-        #call method to allocate queue on switch periodically
-        #it already has a map so it just has to get bandwidth information from polling
-        measure_bandwidth()
+    #call method to allocate queue on switch periodically
+    #it already has a map so it just has to get bandwidth information from polling
+    measure_bandwidth()
 
-        display_bandwidthout()
-
-        flag_set_queue = open('flag_set_queue.txt','r')
-        line = flag_set_queue.readline()
-        if line == "T":
-            
-            flag_set_queue.close()
-            tmp_flag = open('flag_set_queue.txt.tmp','w')
-            #flag_set_queue = open('flag_set_queue.txt','w')
-            tmp_flag.write('F')
-            tmp_flag.flush()
-            os.fsync(tmp_flag.fileno())
-            tmp_flag.close()
-
-            os.rename('flag_set_queue.txt', 'flag_set_queue.txt.bak')
-            os.rename('flag_set_queue.txt.tmp', 'flag_set_queue.txt')
-            os.remove('flag_set_queue.txt.bak')
-
-            allocate_queue()
-
-            
-        else:
-            flag_set_queue.close()
-
-        #allocate_queue()
+    allocate_queue()
             
     
     #end the loop

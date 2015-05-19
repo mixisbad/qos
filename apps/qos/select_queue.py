@@ -3,6 +3,7 @@
 
 import sys
 import os
+import time
 
 server_nodes = {}
 
@@ -66,12 +67,14 @@ if len(sys.argv) > 1:
     #flag_set_queue.write( "T" )
     #flag_set_queue.close()
 
-    tmp_flag = open('flag_set_queue.txt.tmp2','w')
-    tmp_flag.write('T')
-    tmp_flag.flush()
-    os.fsync(tmp_flag.fileno())
-    tmp_flag.close()
+    #tmp_flag = open('flag_set_queue.txt.tmp2','w')
+    #tmp_flag.write('T')
+    #tmp_flag.flush()
+    #os.fsync(tmp_flag.fileno())
+    #tmp_flag.close()
 
-    os.rename('flag_set_queue.txt', 'flag_set_queue.txt.bak2')
-    os.rename('flag_set_queue.txt.tmp2', 'flag_set_queue.txt')
-    os.remove('flag_set_queue.txt.bak2')
+    #os.rename('flag_set_queue.txt', 'flag_set_queue.txt.bak2')
+    #os.rename('flag_set_queue.txt.tmp2', 'flag_set_queue.txt')
+    #os.remove('flag_set_queue.txt.bak2')
+
+#time.sleep(3)
