@@ -162,7 +162,6 @@ def measure_bandwidth():
                             new_traffic_data[buildkey][key_match]["byteCount"] = flow["byteCount"]
 
                             bw = 0.0
-                            #there is someething wrong??
                             if total_duration > 0:
                                 bw = ((total_byte*8.0/1000000.0)/(total_duration))
                             else:
@@ -200,7 +199,8 @@ def measure_bandwidth():
                                 bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
 
-                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+                                if action["type"] == "OPAQUE_ENQUEUE" :
+                                    tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
 
                                 #print adjacent
                                 #check if it is the src node
@@ -217,8 +217,10 @@ def measure_bandwidth():
 
                                 bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
-                            
-                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+
+                                if action["type"] == "OPAQUE_ENQUEUE" :
+                                    tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+
                                 server_name = server[source]['name']
                                 server_nodes_index = nodes.index(server_name)
                             

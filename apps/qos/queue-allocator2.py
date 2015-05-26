@@ -192,15 +192,15 @@ def measure_bandwidth():
                             #print "destination : " + destination 
                             if destination in server:
                                 #server_name = server[destination]['name']
-                                #server_index = server_nodes.index(server_name)+1
-
+                                #server_index = server_nodes.index(server_name)+1 
 
                                 server_index = server[destination]['id']
                                 #add 1 to server index because [0] is reserved for available
                                 bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
 
-                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+                                if action["type"] == "OPAQUE_ENQUEUE":
+                                    tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
 
                                 #print adjacent
                                 #check if it is the src node
@@ -214,11 +214,12 @@ def measure_bandwidth():
                             elif source in server:
                                 server_index = server[source]['id']
 
-
                                 bandwidthout[switch_index][port_int-1][server_index+1] = bandwidthout[switch_index][port_int-1][server_index+1] + bw
                                 #print tmp_count_flow[switch_index]
                             
-                                tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+                                if action["type"] == "OPAQUE_ENQUEUE":
+                                    tmp_count_flow[switch_index][port_int-1][server_index] = tmp_count_flow[switch_index][port_int-1][server_index] + 1
+
                                 server_name = server[source]['name']
                                 server_nodes_index = nodes.index(server_name)
                             
@@ -259,6 +260,7 @@ def measure_bandwidth():
                             queue_property[switch_index][i][j][0] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
                             #try set for max
                             #queue_property[switch_index][i][j][1] = (tmp_cal[j] * speed[switch_index][i]) / total_momentum
+                            #give min 5% in case of no momentum or no route in case a flow without queue need to use a route on action["OUTPUT"]
                             if queue_property[switch_index][i][j][1] < speed[switch_index][i]/20.0 :
                                 queue_property[switch_index][i][j][1] = speed[switch_index][i]/20.0
                         else:
