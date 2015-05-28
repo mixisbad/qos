@@ -1,7 +1,9 @@
 package net.floodlightcontroller.topology;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import net.floodlightcontroller.core.annotations.LogMessageCategory;
 import net.floodlightcontroller.core.annotations.LogMessageDoc;
@@ -145,6 +147,7 @@ public class TopologyInstance {
         // Step 2. Compute shortest path trees in each cluster for 
         // unicast routing.  The trees are rooted at the destination.
         // Cost for tunnel links and direct links are the same.
+        System.out.println("calculate shortest path");
         calculateShortestPathTreeInClusters();
 
         // Step 3. Compute broadcast tree in each cluster.
@@ -734,9 +737,10 @@ public class TopologyInstance {
 	
 	// edit by Pattanapoom Hand
     protected void calculateShortestPathTreeInClusters() {
+    	System.out.println("I got called");
 		pathcache.clear();
 		destinationRootedTrees.clear();
-		boolean normalDijkstra = false;
+		//boolean normalDijkstra = false;
 
 		Map<Link, Float> linkCost = new HashMap<Link, Float>();
 
@@ -752,27 +756,30 @@ public class TopologyInstance {
 			int num_switch = 0;
 			int num_port = 0;
 			// float[][] bandwidth = null;
-			HashMap name_index = new HashMap();
+			//HashMap name_index = new HashMap();
 			String line;
 			Integer index;
+			StringTokenizer st;
+			BufferedReader br=null;
 
-			Scanner scan = null;
-			File file = new File("traffic.txt");
+			//Scanner scan = null;
+			//File file = new File("traffic.txt");
+			FileReader fr;
 			try {
-
-				scan = new Scanner(file);
-
-				num_switch = scan.nextInt();
-				//num_port = scan.nextInt();
-
-				if (num_switch != 0) {
+				fr = new FileReader("traffic.txt");
+				br = new BufferedReader(fr);
+				//scan = new Scanner(file);
+				line = br.readLine();
+				num_switch = Integer.parseInt(line);
+				
+				//if (num_switch != 0) {
 
 					Long[] LongIdForIndex = new Long[num_switch];
 
 					for (int i = 0; i < num_switch; ++i) {
-						scan.nextLine();
-						line = scan.nextLine();
-						index = scan.nextInt();
+						//scan.nextLine();
+						line = br.readLine();
+						index = Integer.parseInt(br.readLine());
 
 						// name_index.put(HexString.toLong(line), index);
 						LongIdForIndex[index] = HexString.toLong(line);
@@ -782,13 +789,12 @@ public class TopologyInstance {
 					// bandwidth = new float[num_switch][num_port];
 					
 					for (int i = 0; i < num_switch; ++i) {
-						num_port = scan.nextInt();
+						line = br.readLine();
+						 st = new StringTokenizer(line);
+						num_port = Integer.parseInt(st.nextToken());
 						for (int j = 0; j < num_port; ++j) {
-							// bandwidth[i][j] = scan.nextFloat();
-							// temporary workaround use only src dpid and src
-							// port
 							Link key = new Link(LongIdForIndex[i], j + 1, 0, 0);
-							linkCost.put(key, scan.nextFloat());
+							linkCost.put(key, Float.parseFloat(st.nextToken()));
 						}
 
 					}
@@ -800,26 +806,38 @@ public class TopologyInstance {
 							destinationRootedTrees.put(node, tree);
 						}
 					}
+				/*	
 				} else {
 					normalDijkstra = true;
-				}
+				}*/
+				br.close();
+				fr.close();
 
 			} catch (FileNotFoundException e) {
-				normalDijkstra = true;
+				//normalDijkstra = true;
 
 			} catch (NoSuchElementException e){
-				normalDijkstra = true;
+				//normalDijkstra = true;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			/*
 			finally
 			{
-				if(scan != null)scan.close();
-			}
+				st = null;
+				
+					try {
+						if(br != null)br.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}*/
+					
 			
-		} else {
-			normalDijkstra = true;
-		}
-
-		if (normalDijkstra) {
+		} else 
+		{
 			// in case of no file present or no data in file just go for normal
 			// dijkstra
 			//

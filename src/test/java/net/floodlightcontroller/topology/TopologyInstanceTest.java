@@ -111,6 +111,7 @@ public class TopologyInstanceTest {
     }
 
     public void createTopologyFromLinks(int [][] linkArray) throws Exception {
+    	System.out.println("create topo from links");
         ILinkDiscovery.LinkType type = ILinkDiscovery.LinkType.DIRECT_LINK;
 
         // Use topologymanager to write this test, it will make it a lot easier.
@@ -134,6 +135,7 @@ public class TopologyInstanceTest {
 
     @Test
     public void testClusters() throws Exception {
+    	System.out.println("test cluster");
         TopologyManager tm = getTopologyManager();
         {
             int [][] linkArray = { 
