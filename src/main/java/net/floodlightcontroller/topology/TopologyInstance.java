@@ -147,6 +147,7 @@ public class TopologyInstance {
         // Step 2. Compute shortest path trees in each cluster for 
         // unicast routing.  The trees are rooted at the destination.
         // Cost for tunnel links and direct links are the same.
+        System.out.println("calculate shortest path");
         calculateShortestPathTreeInClusters();
 
         // Step 3. Compute broadcast tree in each cluster.
@@ -741,10 +742,12 @@ public class TopologyInstance {
 	}
 	
 	// edit by Pattanapoom Hand
+
     public void calculateShortestPathTreeInClusters() {
+
 		pathcache.clear();
 		destinationRootedTrees.clear();
-		boolean normalDijkstra = false;
+		//boolean normalDijkstra = false;
 
 		Map<Link, Float> linkCost = new HashMap<Link, Float>();
 
@@ -775,7 +778,7 @@ public class TopologyInstance {
 				//scan = new Scanner(file);
 				line = br.readLine();
 				num_switch = Integer.parseInt(line);
-				
+			
 				if (num_switch != 0) {
 
 					Long[] LongIdForIndex = new Long[num_switch];
@@ -818,19 +821,19 @@ public class TopologyInstance {
 							destinationRootedTrees.put(node, tree);
 						}
 					}
-				} else {
-					normalDijkstra = true;
+				
 				}
+				//br.close();
+				//fr.close();
 
 			} catch (FileNotFoundException e) {
-				normalDijkstra = true;
 
 			} catch (NoSuchElementException e){
-				normalDijkstra = true;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			finally
 			{
 				st = null;
@@ -844,11 +847,8 @@ public class TopologyInstance {
 					}
 			}
 			
-		} else {
-			normalDijkstra = true;
-		}
-
-		if (normalDijkstra) {
+		} else 
+		{
 			// in case of no file present or no data in file just go for normal
 			// dijkstra
 			//

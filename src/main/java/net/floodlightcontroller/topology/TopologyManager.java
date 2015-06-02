@@ -134,6 +134,7 @@ public class TopologyManager implements
         public void run() {
             try {
                 updateTopology();
+                Thread.sleep(3000);
             }
             catch (Exception e) {
                 log.error("Error in topology instance task thread", e);
@@ -158,7 +159,7 @@ public class TopologyManager implements
     /******************   edit  ******************/
     //try to force it to update no matter there is a new edge or not
     public boolean updateTopology() {
-    	
+    	System.out.println("update topo");
     	boolean newInstanceFlag;
         linksUpdated = false;
         dtLinksUpdated = false;
@@ -711,7 +712,6 @@ public class TopologyManager implements
         floodlightProvider.addHAListener(this);
         addRestletRoutable();
     }
-    
 
     protected void addRestletRoutable() {
         restApi.addRestletRoutable(new TopologyWebRoutable());
@@ -933,6 +933,7 @@ public class TopologyManager implements
      * topology was created or not.
      */
     protected boolean createNewInstance() {
+    	System.out.println("create new instance");
         Set<NodePortTuple> blockedPorts = new HashSet<NodePortTuple>();
 
         // edit by Pattanapoom Hand
@@ -1157,6 +1158,7 @@ public class TopologyManager implements
     * send out updates.
     */
     public void clearCurrentTopology() {
+    	System.out.println("clear current topo");
         this.clear();
         linksUpdated = true;
         dtLinksUpdated = true;
