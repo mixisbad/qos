@@ -373,7 +373,7 @@ public class QoS implements IQoSService, IFloodlightModule,
 			//load a properties file
 			props.load(new FileInputStream("src/main/resources/tools.properties"));
 			tools = props.getProperty("tools").split(",");
-			System.out.println(props.getProperty("qos"));
+			//System.out.println(props.getProperty("qos"));
 			if(props.getProperty("qos").equalsIgnoreCase("enabled")){
 				logger.info("Enabling QoS on Start-up. Edit tools.properties to change this.");
 				this.enableQoS(true);
@@ -729,8 +729,14 @@ public class QoS implements IQoSService, IFloodlightModule,
 		if(sw != null){
 			assert(sw.isActive());
 		}
+		if(sw != null)
+		{
 		// delete flow based on hasCode
 		flowPusher.deleteFlow(policyName+sw.getStringId().hashCode());
+		}
+		else {
+			logger.error("switch has been lost");
+		}
 		
 	}
 	
@@ -799,7 +805,7 @@ public class QoS implements IQoSService, IFloodlightModule,
 		//depending on the policy nw_tos or queue the flow mod
 		// will change the type of service bits or enqueue the packets
 		if(policy.queue > -1 && policy.service == null){
-			logger.info("This policy is a queuing policy");
+			//logger.info("This policy is a queuing policy");
 			List<OFAction> actions = new ArrayList<OFAction>();
 			
 			//add the queuing action
@@ -810,22 +816,23 @@ public class QoS implements IQoSService, IFloodlightModule,
 			enqueue.setQueueId(policy.queue);
 			actions.add((OFAction) enqueue);
 			
-			logger.info("Match is : {}", match.toString());
+			//logger.info("Match is : {}", match.toString());
 			//add the matches and actions and return
 			fm.setMatch(match)
 				.setActions(actions)
 				//edit by pattanapoom
-				.setIdleTimeout((short) 5)  // infinite // change to 5 edit by pattanapoom
+				.setIdleTimeout((short) 0)  // infinite // change to 5 edit by pattanapoom
 				.setHardTimeout((short) 0)  // infinite
 				.setBufferId(OFPacketOut.BUFFER_ID_NONE)
 				.setFlags((short) 0)
 				.setOutPort(OFPort.OFPP_NONE.getValue())
 				.setPriority(policy.priority)
-				.setLengthU((short)OFFlowMod.MINIMUM_LENGTH + OFActionEnqueue.MINIMUM_LENGTH);
+				.setLengthU(OFFlowMod.MINIMUM_LENGTH + OFActionEnqueue.MINIMUM_LENGTH);
+				//.setLengthU(65535);
 				
 		}
 		else if(policy.queue == -1 && policy.service != null){
-			logger.info("This policy is a type of service policy");
+			//logger.info("This policy is a type of service policy");
 			List<OFAction> actions = new ArrayList<OFAction>();
 			
 			//add the queuing action
@@ -845,17 +852,18 @@ public class QoS implements IQoSService, IFloodlightModule,
 			tosAction.setNetworkTypeOfService(pTos);
 			actions.add((OFAction)tosAction);
 			
-			logger.info("Match is : {}", match.toString());
+			//logger.info("Match is : {}", match.toString());
 			//add the matches and actions and return.class.ge
 			fm.setMatch(match)
 				.setActions(actions)
-				.setIdleTimeout((short) 5)  // infinite // change to 5 edit by pattanapoom
+				.setIdleTimeout((short) 15)  // infinite // change to 5 edit by pattanapoom
 				.setHardTimeout((short) 0)  // infinite
 				.setBufferId(OFPacketOut.BUFFER_ID_NONE)
 				.setFlags((short) 0)
 				.setOutPort(OFPort.OFPP_NONE.getValue())
 				.setPriority(Short.MAX_VALUE)
-				.setLengthU((short)OFFlowMod.MINIMUM_LENGTH + OFActionNetworkTypeOfService.MINIMUM_LENGTH);
+				.setLengthU(OFFlowMod.MINIMUM_LENGTH + OFActionNetworkTypeOfService.MINIMUM_LENGTH);
+				//.setLengthU(65535);
 		}
 		else{
 			logger.error("Policy Misconfiguration");
