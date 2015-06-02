@@ -449,7 +449,7 @@ public class Controller implements IFloodlightProviderService,
                                 "specified IP address")
         public void channelConnected(ChannelHandlerContext ctx,
                                      ChannelStateEvent e) throws Exception {
-            log.info("New switch connection from {}",
+            log.error("New switch connection from {}",
                      e.getChannel().getRemoteAddress());
             
             sw = new OFSwitchImpl();
@@ -480,7 +480,7 @@ public class Controller implements IFloodlightProviderService,
                 }
                 sw.setConnected(false);
             }
-            log.info("Disconnected switch {}", sw);
+            log.error("Disconnected switch {}", sw);
         }
 
         @Override

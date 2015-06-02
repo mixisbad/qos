@@ -27,6 +27,7 @@ import net.floodlightcontroller.core.module.FloodlightModuleException;
 import net.floodlightcontroller.core.module.IFloodlightModule;
 import net.floodlightcontroller.core.module.IFloodlightService;
 import net.floodlightcontroller.core.util.SingletonTask;
+import net.floodlightcontroller.core.util.UpdateScheduler;
 import net.floodlightcontroller.counter.ICounterStoreService;
 import net.floodlightcontroller.linkdiscovery.ILinkDiscoveryListener;
 import net.floodlightcontroller.linkdiscovery.ILinkDiscoveryService;
@@ -689,6 +690,7 @@ public class TopologyManager implements
 
     @Override
     public void startUp(FloodlightModuleContext context) {
+    	System.out.println("startup Topology Manager");
         ScheduledExecutorService ses = threadPool.getScheduledExecutor();
         
         newInstanceTask = new SingletonTask(ses, new UpdateTopologyWorker());
@@ -700,7 +702,8 @@ public class TopologyManager implements
         
         if(TopologyInstance.useWidest)
         {
-        	Thread t = new Thread(new UpdateScheduler(newInstanceTask));
+        	//System.out.println("create new thread");
+        	Thread t = new Thread(new UpdateScheduler(this));
         	t.start();
         }
         
@@ -709,32 +712,6 @@ public class TopologyManager implements
         addRestletRoutable();
     }
     
-    protected class UpdateScheduler implements Runnable
-    {
-    	private SingletonTask myNewInstanceTask;
-    	protected UpdateScheduler(SingletonTask newInstanceTask)
-    	{
-    		myNewInstanceTask = newInstanceTask;
-    	}
-
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			while(true)
-				{
-					
-					myNewInstanceTask.reschedule(1, TimeUnit.MICROSECONDS);
-					
-					//try {
-					//	Thread.sleep(3000);
-					//} catch (InterruptedException e) {
-					//	// TODO Auto-generated catch block
-					//	e.printStackTrace();
-					//}
-				}
-		}
-    	
-    }
 
     protected void addRestletRoutable() {
         restApi.addRestletRoutable(new TopologyWebRoutable());

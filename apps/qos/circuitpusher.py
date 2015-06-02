@@ -109,7 +109,7 @@ if args.action=='add':
     myurl = "http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.srcAddress)
     #print command+"\n"
     #print myurl
-
+    
     data = urllib2.urlopen(myurl)
     result = data.read()
     data.close()
@@ -119,10 +119,11 @@ if args.action=='add':
 
     sourceSwitch = parsedResult[0]['attachmentPoint'][0]['switchDPID']
     sourcePort = parsedResult[0]['attachmentPoint'][0]['port']
+
     
     #command = "curl -s http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.dstAddress)
     myurl = "http://%s/wm/device/?ipv4=%s" % (args.controllerRestIp, args.dstAddress)
-
+    print myurl
     data = urllib2.urlopen(myurl)
     result = data.read()
     data.close()
@@ -191,7 +192,7 @@ if args.action=='add':
             cursor.execute(query)
 
             #end edit by pattanapoom store results in DB
-
+            
     cnx.commit()
     cnx.close()
 

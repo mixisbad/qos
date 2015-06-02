@@ -1,7 +1,9 @@
 package net.floodlightcontroller.topology;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import net.floodlightcontroller.core.annotations.LogMessageCategory;
 import net.floodlightcontroller.core.annotations.LogMessageDoc;
@@ -660,7 +662,7 @@ public class TopologyInstance {
      */
     
 	protected BroadcastTree dijkstraWidest(Cluster c, Long root,
-			Map<Link, Float> linkCost, boolean isDstRooted) {
+		Map<Link, Float> linkCost, boolean isDstRooted) {
 		HashMap<Long, Link> nexthoplinks = new HashMap<Long, Link>();
 		// HashMap<Long, Long> nexthopnodes = new HashMap<Long, Long>();
 		HashMap<Long, Float> cost = new HashMap<Long, Float>();
@@ -668,22 +670,24 @@ public class TopologyInstance {
 
 		for (Long node : c.links.keySet()) {
 			nexthoplinks.put(node, null);
-			cost.put(node, 0f);
+			cost.put(node, -1f);
 		}
 
-		HashMap<Long, Boolean> seen = new HashMap<Long, Boolean>();
-		PriorityQueue<NodeDistFloat> nodeq = new PriorityQueue<NodeDistFloat>();
-		nodeq.add(new NodeDistFloat(root, 0.0f));
+		//HashMap<Long, Boolean> seen = new HashMap<Long, Boolean>();
+		Set<Long> seen2 = new HashSet<Long>(); 
 		
-		cost.put(root, 0f);
+		PriorityQueue<NodeDistFloat> nodeq = new PriorityQueue<NodeDistFloat>();
+		nodeq.add(new NodeDistFloat(root, Float.MAX_VALUE));
+		
+		cost.put(root, Float.MAX_VALUE);
 		while (nodeq.peek() != null) {
 			NodeDistFloat n = nodeq.poll();
 			Long cnode = n.getNode();
 			float cwidth = n.getDist();
 			/*if (cdist >= MAX_PATH_WEIGHT)
 				break;*/
-			if (seen.containsKey(cnode))continue;
-			seen.put(cnode, true);
+			if (seen2.contains(cnode))continue;
+			seen2.add(cnode);
 
 			for (Link link : c.links.get(cnode)) {
 				Long neighbor;
@@ -696,6 +700,9 @@ public class TopologyInstance {
 				if (neighbor == root)continue;
 
 				if (neighbor == cnode) continue;
+				
+				if(seen2.contains(neighbor))continue;
+				
 				/*
 				// links directed toward cnode will result in this condition
 				// if (neighbor == cnode) continue;
@@ -707,14 +714,15 @@ public class TopologyInstance {
 					w = linkCost.get(link);
 				*/
 				//w = bandwidth[(Integer) name_index.get(cnode)][link.getSrcPort()-1];
-				Link key = new Link(cnode,link.getDstPort(),0,0);
-				w = linkCost.get(key);
+				//TODO need to fix how to create link
+				//Link key = new Link(neighbor,link.getSrcPort(),link.getDst(),link.getDstPort());
+				w = linkCost.get(link);
 				
 				//w = 1.0f;
 				//in the future the linkCost should be sent with the value from measure script
 				//w = bandwidth[][link.getSrcPort()]
 
-				float ndist = cwidth > w?cwidth:w; 
+				float ndist = cwidth < w?cwidth:w; 
 				if (ndist > cost.get(neighbor)) {
 					cost.put(neighbor, ndist);
 					nexthoplinks.put(neighbor, link);
@@ -733,7 +741,7 @@ public class TopologyInstance {
 	}
 	
 	// edit by Pattanapoom Hand
-    protected void calculateShortestPathTreeInClusters() {
+    public void calculateShortestPathTreeInClusters() {
 		pathcache.clear();
 		destinationRootedTrees.clear();
 		boolean normalDijkstra = false;
@@ -752,27 +760,30 @@ public class TopologyInstance {
 			int num_switch = 0;
 			int num_port = 0;
 			// float[][] bandwidth = null;
-			HashMap name_index = new HashMap();
+			//HashMap name_index = new HashMap();
 			String line;
 			Integer index;
+			StringTokenizer st;
+			BufferedReader br=null;
 
-			Scanner scan = null;
-			File file = new File("traffic.txt");
+			//Scanner scan = null;
+			//File file = new File("traffic.txt");
+			FileReader fr=null;
 			try {
-
-				scan = new Scanner(file);
-
-				num_switch = scan.nextInt();
-				//num_port = scan.nextInt();
-
+				fr = new FileReader("traffic.txt");
+				br = new BufferedReader(fr);
+				//scan = new Scanner(file);
+				line = br.readLine();
+				num_switch = Integer.parseInt(line);
+				
 				if (num_switch != 0) {
 
 					Long[] LongIdForIndex = new Long[num_switch];
 
 					for (int i = 0; i < num_switch; ++i) {
-						scan.nextLine();
-						line = scan.nextLine();
-						index = scan.nextInt();
+						//scan.nextLine();
+						line = br.readLine();
+						index = Integer.parseInt(br.readLine());
 
 						// name_index.put(HexString.toLong(line), index);
 						LongIdForIndex[index] = HexString.toLong(line);
@@ -782,13 +793,20 @@ public class TopologyInstance {
 					// bandwidth = new float[num_switch][num_port];
 					
 					for (int i = 0; i < num_switch; ++i) {
-						num_port = scan.nextInt();
+						line = br.readLine();
+						 st = new StringTokenizer(line);
+						num_port = Integer.parseInt(st.nextToken());
 						for (int j = 0; j < num_port; ++j) {
-							// bandwidth[i][j] = scan.nextFloat();
-							// temporary workaround use only src dpid and src
-							// port
-							Link key = new Link(LongIdForIndex[i], j + 1, 0, 0);
-							linkCost.put(key, scan.nextFloat());
+							float avai_bw = Float.parseFloat(st.nextToken());
+							int dst_index = Integer.parseInt(st.nextToken());
+							int dst_port = Integer.parseInt(st.nextToken());
+							
+							//TODO need to fix how to create link
+							if(dst_index != -1)
+							{
+								Link key = new Link(LongIdForIndex[i], j + 1, LongIdForIndex[dst_index], dst_port);
+								linkCost.put(key, avai_bw);
+							}
 						}
 
 					}
@@ -809,10 +827,21 @@ public class TopologyInstance {
 
 			} catch (NoSuchElementException e){
 				normalDijkstra = true;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			finally
 			{
-				if(scan != null)scan.close();
+				st = null;
+				
+					try {
+						if(br != null)br.close();
+						if(fr != null)fr.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 			
 		} else {

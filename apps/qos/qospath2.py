@@ -49,7 +49,7 @@ def main():
 	    #syntax check ip addresses
 	    #required fields
 	    #Credit: Sriram Santosh
-	    '''ipPattern = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+	    ipPattern = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
 	    if len(re.findall(ipPattern,src)) > 0:
 	        print "src good"
 	    else:
@@ -60,7 +60,7 @@ def main():
 		else:
 		    print "bad dest"
 		    exit(1)
-	    #all goes well, add'''
+	    #all goes well, add
 	    add(name,src,dest,json,c,p)
 	    exit()
 	else:
